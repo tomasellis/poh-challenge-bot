@@ -1,0 +1,2897 @@
+{
+  "contractName": "EnhancedAppealableArbitrator",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_arbitrationPrice",
+          "type": "uint256"
+        },
+        {
+          "internalType": "contract IArbitrator",
+          "name": "_arbitrator",
+          "type": "address"
+        },
+        {
+          "internalType": "bytes",
+          "name": "_arbitratorExtraData",
+          "type": "bytes"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_timeOut",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "_disputeID",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "internalType": "contract IArbitrable",
+          "name": "_arbitrable",
+          "type": "address"
+        }
+      ],
+      "name": "AppealDecision",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "_disputeID",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "internalType": "contract IArbitrable",
+          "name": "_arbitrable",
+          "type": "address"
+        }
+      ],
+      "name": "AppealPossible",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "_disputeID",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "internalType": "contract IArbitrable",
+          "name": "_arbitrable",
+          "type": "address"
+        }
+      ],
+      "name": "DisputeCreation",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "contract IArbitrator",
+          "name": "_arbitrator",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "_disputeID",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "_ruling",
+          "type": "uint256"
+        }
+      ],
+      "name": "Ruling",
+      "type": "event"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_disputeID",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bytes",
+          "name": "_extraData",
+          "type": "bytes"
+        }
+      ],
+      "name": "appeal",
+      "outputs": [],
+      "payable": true,
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_disputeID",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bytes",
+          "name": "_extraData",
+          "type": "bytes"
+        }
+      ],
+      "name": "appealCost",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "cost",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "appealDisputeIDsToDisputeIDs",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "appealDisputes",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "rulingTime",
+          "type": "uint256"
+        },
+        {
+          "internalType": "contract IArbitrator",
+          "name": "arbitrator",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "appealDisputeID",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "bytes",
+          "name": "_extraData",
+          "type": "bytes"
+        }
+      ],
+      "name": "arbitrationCost",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "fee",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "arbitrator",
+      "outputs": [
+        {
+          "internalType": "contract IArbitrator",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "arbitratorExtraData",
+      "outputs": [
+        {
+          "internalType": "bytes",
+          "name": "",
+          "type": "bytes"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "contract IArbitrator",
+          "name": "_arbitrator",
+          "type": "address"
+        }
+      ],
+      "name": "changeArbitrator",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_timeOut",
+          "type": "uint256"
+        }
+      ],
+      "name": "changeTimeOut",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_choices",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bytes",
+          "name": "_extraData",
+          "type": "bytes"
+        }
+      ],
+      "name": "createDispute",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "disputeID",
+          "type": "uint256"
+        }
+      ],
+      "payable": true,
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_disputeID",
+          "type": "uint256"
+        }
+      ],
+      "name": "currentRuling",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "ruling",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_disputeID",
+          "type": "uint256"
+        }
+      ],
+      "name": "disputeStatus",
+      "outputs": [
+        {
+          "internalType": "enum IArbitrator.DisputeStatus",
+          "name": "status",
+          "type": "uint8"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "disputes",
+      "outputs": [
+        {
+          "internalType": "contract IArbitrable",
+          "name": "arbitrated",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "choices",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "fee",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "ruling",
+          "type": "uint256"
+        },
+        {
+          "internalType": "enum IArbitrator.DisputeStatus",
+          "name": "status",
+          "type": "uint8"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_disputeID",
+          "type": "uint256"
+        }
+      ],
+      "name": "getAppealDisputeID",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "disputeID",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_disputeID",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_ruling",
+          "type": "uint256"
+        }
+      ],
+      "name": "giveRuling",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "owner",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_disputeID",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_ruling",
+          "type": "uint256"
+        }
+      ],
+      "name": "rule",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_arbitrationPrice",
+          "type": "uint256"
+        }
+      ],
+      "name": "setArbitrationPrice",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "timeOut",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_disputeID",
+          "type": "uint256"
+        }
+      ],
+      "name": "appealPeriod",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "start",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "end",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.5.17+commit.d19bba13\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_arbitrationPrice\",\"type\":\"uint256\"},{\"internalType\":\"contract IArbitrator\",\"name\":\"_arbitrator\",\"type\":\"address\"},{\"internalType\":\"bytes\",\"name\":\"_arbitratorExtraData\",\"type\":\"bytes\"},{\"internalType\":\"uint256\",\"name\":\"_timeOut\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"_disputeID\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"contract IArbitrable\",\"name\":\"_arbitrable\",\"type\":\"address\"}],\"name\":\"AppealDecision\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"_disputeID\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"contract IArbitrable\",\"name\":\"_arbitrable\",\"type\":\"address\"}],\"name\":\"AppealPossible\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"_disputeID\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"contract IArbitrable\",\"name\":\"_arbitrable\",\"type\":\"address\"}],\"name\":\"DisputeCreation\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"contract IArbitrator\",\"name\":\"_arbitrator\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"_disputeID\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"_ruling\",\"type\":\"uint256\"}],\"name\":\"Ruling\",\"type\":\"event\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_disputeID\",\"type\":\"uint256\"},{\"internalType\":\"bytes\",\"name\":\"_extraData\",\"type\":\"bytes\"}],\"name\":\"appeal\",\"outputs\":[],\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_disputeID\",\"type\":\"uint256\"},{\"internalType\":\"bytes\",\"name\":\"_extraData\",\"type\":\"bytes\"}],\"name\":\"appealCost\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"cost\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"appealDisputeIDsToDisputeIDs\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"appealDisputes\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"rulingTime\",\"type\":\"uint256\"},{\"internalType\":\"contract IArbitrator\",\"name\":\"arbitrator\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"appealDisputeID\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_disputeID\",\"type\":\"uint256\"}],\"name\":\"appealPeriod\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"start\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"end\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"bytes\",\"name\":\"_extraData\",\"type\":\"bytes\"}],\"name\":\"arbitrationCost\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"fee\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"arbitrator\",\"outputs\":[{\"internalType\":\"contract IArbitrator\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"arbitratorExtraData\",\"outputs\":[{\"internalType\":\"bytes\",\"name\":\"\",\"type\":\"bytes\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"contract IArbitrator\",\"name\":\"_arbitrator\",\"type\":\"address\"}],\"name\":\"changeArbitrator\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_timeOut\",\"type\":\"uint256\"}],\"name\":\"changeTimeOut\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_choices\",\"type\":\"uint256\"},{\"internalType\":\"bytes\",\"name\":\"_extraData\",\"type\":\"bytes\"}],\"name\":\"createDispute\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"disputeID\",\"type\":\"uint256\"}],\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_disputeID\",\"type\":\"uint256\"}],\"name\":\"currentRuling\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"ruling\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_disputeID\",\"type\":\"uint256\"}],\"name\":\"disputeStatus\",\"outputs\":[{\"internalType\":\"enum IArbitrator.DisputeStatus\",\"name\":\"status\",\"type\":\"uint8\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"disputes\",\"outputs\":[{\"internalType\":\"contract IArbitrable\",\"name\":\"arbitrated\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"choices\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"fee\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"ruling\",\"type\":\"uint256\"},{\"internalType\":\"enum IArbitrator.DisputeStatus\",\"name\":\"status\",\"type\":\"uint8\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_disputeID\",\"type\":\"uint256\"}],\"name\":\"getAppealDisputeID\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"disputeID\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_disputeID\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_ruling\",\"type\":\"uint256\"}],\"name\":\"giveRuling\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_disputeID\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_ruling\",\"type\":\"uint256\"}],\"name\":\"rule\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_arbitrationPrice\",\"type\":\"uint256\"}],\"name\":\"setArbitrationPrice\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"timeOut\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"author\":\"Enrique Piqueras - <epiquerass@gmail.com>\",\"details\":\"Implementation of `AppealableArbitrator` that supports `appealPeriod`.\",\"methods\":{\"appeal(uint256,bytes)\":{\"details\":\"Appeals a ruling.\",\"params\":{\"_disputeID\":\"The ID of the dispute.\",\"_extraData\":\"Additional info about the appeal.\"}},\"appealCost(uint256,bytes)\":{\"details\":\"Gets the cost of appeal for the specified dispute.\",\"params\":{\"_disputeID\":\"The ID of the dispute.\",\"_extraData\":\"Additional info about the appeal.\"},\"return\":\"The cost of the appeal.\"},\"appealPeriod(uint256)\":{\"details\":\"Compute the start and end of the dispute's current or next appeal period, if possible.\",\"params\":{\"_disputeID\":\"ID of the dispute.\"},\"return\":\"The start and end of the period.\"},\"arbitrationCost(bytes)\":{\"details\":\"Cost of arbitration. Accessor to arbitrationPrice.\",\"params\":{\"_extraData\":\"Not used by this contract.\"},\"return\":\"fee Amount to be paid.\"},\"changeArbitrator(address)\":{\"details\":\"Changes the back up arbitrator.\",\"params\":{\"_arbitrator\":\"The new back up arbitrator.\"}},\"changeTimeOut(uint256)\":{\"details\":\"Changes the time out.\",\"params\":{\"_timeOut\":\"The new time out.\"}},\"constructor\":{\"details\":\"Constructs the `EnhancedAppealableArbitrator` contract.\",\"params\":{\"_arbitrationPrice\":\"The amount to be paid for arbitration.\",\"_arbitrator\":\"The back up arbitrator.\",\"_arbitratorExtraData\":\"Not used by this contract.\",\"_timeOut\":\"The time out for the appeal period.\"}},\"createDispute(uint256,bytes)\":{\"details\":\"Create a dispute. Must be called by the arbitrable contract. Must be paid at least arbitrationCost().\",\"params\":{\"_choices\":\"Amount of choices the arbitrator can make in this dispute. When ruling ruling<=choices.\",\"_extraData\":\"Can be used to give additional info on the dispute to be created.\"},\"return\":\"disputeID ID of the dispute created.\"},\"currentRuling(uint256)\":{\"details\":\"Return the ruling of a dispute.\",\"params\":{\"_disputeID\":\"ID of the dispute to rule.\"},\"return\":\"ruling The ruling which would or has been given.\"},\"disputeStatus(uint256)\":{\"details\":\"Gets the status of the specified dispute.\",\"params\":{\"_disputeID\":\"The ID of the dispute.\"},\"return\":\"The status.\"},\"getAppealDisputeID(uint256)\":{\"details\":\"Gets the specified dispute's latest appeal ID.\",\"params\":{\"_disputeID\":\"The ID of the dispute.\"}},\"giveRuling(uint256,uint256)\":{\"details\":\"Gives a ruling.\",\"params\":{\"_disputeID\":\"The ID of the dispute.\",\"_ruling\":\"The ruling.\"}},\"rule(uint256,uint256)\":{\"details\":\"Give a ruling for a dispute. Must be called by the arbitrator. The purpose of this function is to ensure that the address calling it has the right to rule on the contract.\",\"params\":{\"_disputeID\":\"ID of the dispute in the IArbitrator contract.\",\"_ruling\":\"Ruling given by the arbitrator. Note that 0 is reserved for \\\"Not able/wanting to make a decision\\\".\"}},\"setArbitrationPrice(uint256)\":{\"details\":\"Set the arbitration price. Only callable by the owner.\",\"params\":{\"_arbitrationPrice\":\"Amount to be paid for arbitration.\"}}},\"title\":\"EnhancedAppealableArbitrator\"},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/C/Projects/TWITTER/cloned/Proof-Of-Humanity/contracts/test-purposes/EnhancedAppealableArbitrator.sol\":\"EnhancedAppealableArbitrator\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/C/Projects/TWITTER/cloned/Proof-Of-Humanity/contracts/test-purposes/AppealableArbitrator.sol\":{\"keccak256\":\"0x2a79c887aae996b99977103e5fb1141218ee8ff02222276acc3963de3a468581\",\"urls\":[\"bzz-raw://7e79cb9cfde25f1269679e519630da7d9878d21fdda4cb3f57fc1d3beafb15a4\",\"dweb:/ipfs/QmTY6E21oAuQy8oG8iWo7FCJ9a1ZzoDXds596JqBf4Vw1y\"]},\"/C/Projects/TWITTER/cloned/Proof-Of-Humanity/contracts/test-purposes/CentralizedArbitrator.sol\":{\"keccak256\":\"0x3dd07aa21be09b8b00b4538ca9549ce2b621e9b9cef12185db9fd9ab0ce6cfae\",\"urls\":[\"bzz-raw://7ac3e9508f6522129838928dbb7dafbc4b0a18f9773f02256f4781497a7fc785\",\"dweb:/ipfs/QmSEbFFswhKircVcDinR7sB9hncPipxfhKSQxqAVYVa22x\"]},\"/C/Projects/TWITTER/cloned/Proof-Of-Humanity/contracts/test-purposes/EnhancedAppealableArbitrator.sol\":{\"keccak256\":\"0x5953ff8398e71e491ea7d0440dbb8254e5cdad383db698eb2c1c623eddff7ccd\",\"urls\":[\"bzz-raw://75653e6845f9cb5ee224d04de3eb6283c5725a533d1f01078bf4f73ba6e02038\",\"dweb:/ipfs/QmV8XZDx2wN1etuqrwvi3Bk6DQtJ6JXB5WN9TdPJnXezKj\"]},\"@kleros/erc-792/contracts/IArbitrable.sol\":{\"keccak256\":\"0x68e90a06a982dfa968f3aa76ac519126b090707a07e6e984a69ccbc06b6c7cc0\",\"urls\":[\"bzz-raw://ce1d8253efda5757740ee16481ebb82374a85e8eef393c87f6c0a6f2b388db6f\",\"dweb:/ipfs/QmUiQ1EHxVJmwCzqKzjwLAQrAFfQTxKnXHHv6vB75DjP22\"]},\"@kleros/erc-792/contracts/IArbitrator.sol\":{\"keccak256\":\"0x98e3799e61a5e1cc8c01426a56927ec23a8ff8f807751d5c5cc111da683b3f50\",\"urls\":[\"bzz-raw://9c4609c434bdc39620d619093b5610215b3978caf2e70ae3a81eaf19468bfc6b\",\"dweb:/ipfs/QmNj3uku7FrFNzgRS3XfadyVAG6HzLvSTsTnEvUJB6poR3\"]}},\"version\":1}",
+  "bytecode": "0x6080604052600080546001600160a01b0319163317905534801561002257600080fd5b50604051611b57380380611b578339818101604052608081101561004557600080fd5b8151602083015160408085018051915193959294830192918464010000000082111561007057600080fd5b90830190602082018581111561008557600080fd5b825164010000000081118282018810171561009f57600080fd5b82525081516020918201929091019080838360005b838110156100cc5781810151838201526020016100b4565b50505050905090810190601f1680156100f95780820380516001836020036101000a031916815260200191505b506040526020015160019590955550505060039190915550611a37806101206000396000f3fe60806040526004361061011e5760003560e01c80636cc6cde1116100a0578063c97c4d5c11610064578063c97c4d5c146105a7578063f23f16e6146105d7578063f7434ea91461068f578063fc548f0814610740578063ffb43c48146107735761011e565b80636cc6cde1146104495780638da5cb5b1461047a57806394e9cb961461048f578063afe15cfb146104b9578063c13517e1146104fc5761011e565b8063311a6c56116100e7578063311a6c561461028b57806337025d21146102bd57806349912f881461030d578063564a565d146103b8578063614d85e1146104345761011e565b8062b58205146101235780630c7ac7b61461015f57806310f169e8146101e957806319810619146102375780631c3db16d14610261575b600080fd5b34801561012f57600080fd5b5061014d6004803603602081101561014657600080fd5b503561079d565b60408051918252519081900360200190f35b34801561016b57600080fd5b506101746107af565b6040805160208082528351818301528351919283929083019185019080838360005b838110156101ae578181015183820152602001610196565b50505050905090810190601f1680156101db5780820380516001836020036101000a031916815260200191505b509250505060405180910390f35b3480156101f557600080fd5b506102136004803603602081101561020c57600080fd5b503561083d565b6040518082600281111561022357fe5b60ff16815260200191505060405180910390f35b34801561024357600080fd5b5061014d6004803603602081101561025a57600080fd5b5035610919565b34801561026d57600080fd5b5061014d6004803603602081101561028457600080fd5b503561099a565b34801561029757600080fd5b506102bb600480360360408110156102ae57600080fd5b5080359060200135610a3d565b005b3480156102c957600080fd5b506102e7600480360360208110156102e057600080fd5b5035610acb565b604080519384526001600160a01b03909216602084015282820152519081900360600190f35b6102bb6004803603604081101561032357600080fd5b81359190810190604081016020820135600160201b81111561034457600080fd5b82018360208201111561035657600080fd5b803590602001918460018302840111600160201b8311171561037757600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600092019190915250929550610af5945050505050565b3480156103c457600080fd5b506103e2600480360360208110156103db57600080fd5b5035610da1565b60405180866001600160a01b03166001600160a01b0316815260200185815260200184815260200183815260200182600281111561041c57fe5b60ff1681526020019550505050505060405180910390f35b34801561044057600080fd5b5061014d610dec565b34801561045557600080fd5b5061045e610df2565b604080516001600160a01b039092168252519081900360200190f35b34801561048657600080fd5b5061045e610e01565b34801561049b57600080fd5b506102bb600480360360208110156104b257600080fd5b5035610e10565b3480156104c557600080fd5b506104e3600480360360208110156104dc57600080fd5b5035610e74565b6040805192835260208301919091528051918290030190f35b61014d6004803603604081101561051257600080fd5b81359190810190604081016020820135600160201b81111561053357600080fd5b82018360208201111561054557600080fd5b803590602001918460018302840111600160201b8311171561056657600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600092019190915250929550610f88945050505050565b3480156105b357600080fd5b506102bb600480360360408110156105ca57600080fd5b50803590602001356110d5565b3480156105e357600080fd5b5061014d600480360360408110156105fa57600080fd5b81359190810190604081016020820135600160201b81111561061b57600080fd5b82018360208201111561062d57600080fd5b803590602001918460018302840111600160201b8311171561064e57600080fd5b91908080601f01602080910402602001604051908101604052809392919081815260200183838082843760009201919091525092955061138d945050505050565b34801561069b57600080fd5b5061014d600480360360208110156106b257600080fd5b810190602081018135600160201b8111156106cc57600080fd5b8201836020820111156106de57600080fd5b803590602001918460018302840111600160201b831117156106ff57600080fd5b91908080601f01602080910402602001604051908101604052809392919081815260200183838082843760009201919091525092955061159b945050505050565b34801561074c57600080fd5b506102bb6004803603602081101561076357600080fd5b50356001600160a01b03166115a2565b34801561077f57600080fd5b506102bb6004803603602081101561079657600080fd5b5035611623565b60056020526000908152604090205481565b6007805460408051602060026001851615610100026000190190941693909304601f810184900484028201840190925281815292918301828280156108355780601f1061080a57610100808354040283529160200191610835565b820191906000526020600020905b81548152906001019060200180831161081857829003601f168201915b505050505081565b6000818152600460205260408120600101546001600160a01b0316156108ed576000828152600460208181526040928390206001810154600290910154845163021e2d3d60e31b81529384015292516001600160a01b03909316926310f169e8926024808201939291829003018186803b1580156108ba57600080fd5b505afa1580156108ce573d6000803e3d6000fd5b505050506040513d60208110156108e457600080fd5b50519050610914565b600282815481106108fa57fe5b600091825260209091206004600590920201015460ff1690505b919050565b6000818152600460205260408120600101546001600160a01b0316156109965760008281526004602081815260409283902060018101546002909101548451631981061960e01b81529384015292516001600160a01b03909316926319810619926024808201939291829003018186803b1580156108ba57600080fd5b5090565b6000818152600460205260408120600101546001600160a01b031615610a175760008281526004602081815260409283902060018101546002909101548451631c3db16d60e01b81529384015292516001600160a01b0390931692631c3db16d926024808201939291829003018186803b1580156108ba57600080fd5b60028281548110610a2457fe5b9060005260206000209060050201600301549050919050565b6006546001600160a01b03163314610a865760405162461bcd60e51b815260040180806020018281038252602581526020018061196f6025913960400191505060405180910390fd5b604080518281529051839133917f394027a5fa6e098a1191094d1719d6929b9abc535fcc0c8f448d6a4e756222769181900360200190a3610ac78282611687565b5050565b60046020526000908152604090208054600182015460029092015490916001600160a01b03169083565b8181610b01828261138d565b341015610b3f5760405162461bcd60e51b81526004018080602001828103825260258152602001806118ef6025913960400191505060405180910390fd5b6000848152600460205260409020600101546001600160a01b031615610c4d5760008481526004602081815260408084206001810154600290910154825163093225f160e31b8152948501818152602486019384528951604487015289516001600160a01b03909316966349912f8896349693958c959394909360649092019290860191908190849084905b83811015610be3578181015183820152602001610bcb565b50505050905090810190601f168015610c105780820380516001836020036101000a031916815260200191505b5093505050506000604051808303818588803b158015610c2f57600080fd5b505af1158015610c43573d6000803e3d6000fd5b5050505050610d9b565b60068054600086815260046020526040902060010180546001600160a01b0319166001600160a01b03928316179055905460028054919092169163c13517e19134919088908110610c9a57fe5b906000526020600020906005020160010154866040518463ffffffff1660e01b81526004018083815260200180602001828103825283818151815260200191508051906020019080838360005b83811015610cff578181015183820152602001610ce7565b50505050905090810190601f168015610d2c5780820380516001836020036101000a031916815260200191505b5093505050506020604051808303818588803b158015610d4b57600080fd5b505af1158015610d5f573d6000803e3d6000fd5b50505050506040513d6020811015610d7657600080fd5b5051600085815260046020908152604080832060020184905592825260059052208490555b50505050565b60028181548110610dae57fe5b6000918252602090912060059091020180546001820154600283015460038401546004909401546001600160a01b0390931694509092909160ff1685565b60035481565b6006546001600160a01b031681565b6000546001600160a01b031681565b6000546001600160a01b03163314610e6f576040805162461bcd60e51b815260206004820181905260248201527f43616e206f6e6c792062652063616c6c656420627920746865206f776e65722e604482015290519081900360640190fd5b600355565b60008181526004602052604081206001015481906001600160a01b031615610f2f576000838152600460208190526040918290206001810154600290910154835163afe15cfb60e01b81529283015282516001600160a01b039091169263afe15cfb9260248082019391829003018186803b158015610ef257600080fd5b505afa158015610f06573d6000803e3d6000fd5b505050506040513d6040811015610f1c57600080fd5b5080516020909101519092509050610f83565b600083815260046020526040902054915081610f7c5760405162461bcd60e51b81526004018080602001828103825260288152602001806118a06028913960400191505060405180910390fd5b5060035481015b915091565b600081610f948161159b565b341015610fd25760405162461bcd60e51b815260040180806020018281038252602a815260200180611994602a913960400191505060405180910390fd5b600160026040518060a00160405280336001600160a01b03168152602001878152602001348152602001600081526020016000600281111561101057fe5b9052815460018082018085556000948552602094859020845160059094020180546001600160a01b0319166001600160a01b03909416939093178355938301518282015560408301516002808401919091556060840151600384015560808401516004840180549193909260ff1990921691849081111561108d57fe5b02179055505050039150336001600160a01b0316827f141dfc18aa6a56fc816f44f0e9e2f1ebc92b15ab167770e17db5b084c10ed99560405160405180910390a35092915050565b60028083815481106110e357fe5b600091825260209091206004600590920201015460ff16600281111561110557fe5b14156111425760405162461bcd60e51b815260040180806020018281038252602a815260200180611914602a913960400191505060405180910390fd5b6000828152600460205260409020600101546001600160a01b0316156111c9576000828152600460205260409020600101546001600160a01b031633146111ba5760405162461bcd60e51b815260040180806020018281038252603c815260200180611864603c913960400191505060405180910390fd5b6111c48282611703565b610ac7565b6000546001600160a01b031633146112125760405162461bcd60e51b815260040180806020018281038252603181526020018061193e6031913960400191505060405180910390fd5b60016002838154811061122157fe5b600091825260209091206004600590920201015460ff16600281111561124357fe5b14156112c757600354600083815260046020526040902054420311156112905761128b826002848154811061127457fe5b906000526020600020906005020160030154611703565b6111c4565b60405162461bcd60e51b81526004018080602001828103825260218152602001806119be6021913960400191505060405180910390fd5b80600283815481106112d557fe5b9060005260206000209060050201600301819055506001600283815481106112f957fe5b60009182526020909120600460059092020101805460ff1916600183600281111561132057fe5b02179055506000828152600460205260409020429055600280548390811061134457fe5b600091825260208220600590910201546040516001600160a01b039091169184917fa5d41b970d849372be1da1481ffd78d162bfe57a7aa2fe4e5fb73481fa5ac24f9190a35050565b6000828152600460205260408120600101546001600160a01b0316156114aa5760008381526004602081815260408084206001810154600290910154825163791f8b7360e11b8152948501818152602486019384528851604487015288516001600160a01b039093169663f23f16e69692958a959294929360640192908601918190849084905b8381101561142c578181015183820152602001611414565b50505050905090810190601f1680156114595780820380516001836020036101000a031916815260200191505b50935050505060206040518083038186803b15801561147757600080fd5b505afa15801561148b573d6000803e3d6000fd5b505050506040513d60208110156114a157600080fd5b50519050611595565b6001600284815481106114b957fe5b600091825260209091206004600590920201015460ff1660028111156114db57fe5b141561158b5760065460405163f7434ea960e01b81526020600482018181528551602484015285516001600160a01b039094169363f7434ea993879383926044909201919085019080838360005b83811015611541578181015183820152602001611529565b50505050905090810190601f16801561156e5780820380516001836020036101000a031916815260200191505b509250505060206040518083038186803b15801561147757600080fd5b506001600160ff1b035b92915050565b5060015490565b6000546001600160a01b03163314611601576040805162461bcd60e51b815260206004820181905260248201527f43616e206f6e6c792062652063616c6c656420627920746865206f776e65722e604482015290519081900360640190fd5b600680546001600160a01b0319166001600160a01b0392909216919091179055565b6000546001600160a01b03163314611682576040805162461bcd60e51b815260206004820181905260248201527f43616e206f6e6c792062652063616c6c656420627920746865206f776e65722e604482015290519081900360640190fd5b600155565b600082815260056020908152604080832054835260049091529020600101546001600160a01b03166116ea5760405162461bcd60e51b81526004018080602001828103825260248152602001806119df6024913960400191505060405180910390fd5b600082815260056020526040902054610ac790826110d5565b60006002838154811061171257fe5b90600052602060002090600502019050806001015482111561176d576040805162461bcd60e51b815260206004820152600f60248201526e24b73b30b634b210393ab634b7339760891b604482015290519081900360640190fd5b6002600482015460ff16600281111561178257fe5b14156117bf5760405162461bcd60e51b81526004018080602001828103825260278152602001806118c86027913960400191505060405180910390fd5b6003810182905560048101805460ff1916600290811790915581015460405133916108fc811502916000818181858888f1505083546040805163188d362b60e11b8152600481018990526024810188905290516001600160a01b03909216945063311a6c569350604480820193506000929182900301818387803b15801561184657600080fd5b505af115801561185a573d6000803e3d6000fd5b5050505050505056fe41707065616c6564206469737075746573206d7573742062652072756c6564206279207468656972206261636b2075702061726269747261746f722e546865207370656369666965642064697370757465206973206e6f742061707065616c61626c652e5468652064697370757465206d757374206e6f7420626520736f6c76656420616c72656164792e4e6f7420656e6f7567682045544820746f20636f7665722061707065616c20636f7374732e54686520737065636966696564206469737075746520697320616c7265616479207265736f6c7665642e4e6f742061707065616c6564206469737075746573206d7573742062652072756c656420627920746865206f776e65722e43616e206f6e6c792062652063616c6c6564206279207468652061726269747261746f722e4e6f7420656e6f7567682045544820746f20636f766572206172626974726174696f6e20636f7374732e54696d65206f75742074696d6520686173206e6f7420706173736564207965742e5468652064697370757465206d7573742068617665206265656e2061707065616c65642ea265627a7a7231582051316f35bbf52b2511e9f2f0d537694090e0647ca3886610fb6185c823bfa20564736f6c63430005110032",
+  "deployedBytecode": "0x60806040526004361061011e5760003560e01c80636cc6cde1116100a0578063c97c4d5c11610064578063c97c4d5c146105a7578063f23f16e6146105d7578063f7434ea91461068f578063fc548f0814610740578063ffb43c48146107735761011e565b80636cc6cde1146104495780638da5cb5b1461047a57806394e9cb961461048f578063afe15cfb146104b9578063c13517e1146104fc5761011e565b8063311a6c56116100e7578063311a6c561461028b57806337025d21146102bd57806349912f881461030d578063564a565d146103b8578063614d85e1146104345761011e565b8062b58205146101235780630c7ac7b61461015f57806310f169e8146101e957806319810619146102375780631c3db16d14610261575b600080fd5b34801561012f57600080fd5b5061014d6004803603602081101561014657600080fd5b503561079d565b60408051918252519081900360200190f35b34801561016b57600080fd5b506101746107af565b6040805160208082528351818301528351919283929083019185019080838360005b838110156101ae578181015183820152602001610196565b50505050905090810190601f1680156101db5780820380516001836020036101000a031916815260200191505b509250505060405180910390f35b3480156101f557600080fd5b506102136004803603602081101561020c57600080fd5b503561083d565b6040518082600281111561022357fe5b60ff16815260200191505060405180910390f35b34801561024357600080fd5b5061014d6004803603602081101561025a57600080fd5b5035610919565b34801561026d57600080fd5b5061014d6004803603602081101561028457600080fd5b503561099a565b34801561029757600080fd5b506102bb600480360360408110156102ae57600080fd5b5080359060200135610a3d565b005b3480156102c957600080fd5b506102e7600480360360208110156102e057600080fd5b5035610acb565b604080519384526001600160a01b03909216602084015282820152519081900360600190f35b6102bb6004803603604081101561032357600080fd5b81359190810190604081016020820135600160201b81111561034457600080fd5b82018360208201111561035657600080fd5b803590602001918460018302840111600160201b8311171561037757600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600092019190915250929550610af5945050505050565b3480156103c457600080fd5b506103e2600480360360208110156103db57600080fd5b5035610da1565b60405180866001600160a01b03166001600160a01b0316815260200185815260200184815260200183815260200182600281111561041c57fe5b60ff1681526020019550505050505060405180910390f35b34801561044057600080fd5b5061014d610dec565b34801561045557600080fd5b5061045e610df2565b604080516001600160a01b039092168252519081900360200190f35b34801561048657600080fd5b5061045e610e01565b34801561049b57600080fd5b506102bb600480360360208110156104b257600080fd5b5035610e10565b3480156104c557600080fd5b506104e3600480360360208110156104dc57600080fd5b5035610e74565b6040805192835260208301919091528051918290030190f35b61014d6004803603604081101561051257600080fd5b81359190810190604081016020820135600160201b81111561053357600080fd5b82018360208201111561054557600080fd5b803590602001918460018302840111600160201b8311171561056657600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600092019190915250929550610f88945050505050565b3480156105b357600080fd5b506102bb600480360360408110156105ca57600080fd5b50803590602001356110d5565b3480156105e357600080fd5b5061014d600480360360408110156105fa57600080fd5b81359190810190604081016020820135600160201b81111561061b57600080fd5b82018360208201111561062d57600080fd5b803590602001918460018302840111600160201b8311171561064e57600080fd5b91908080601f01602080910402602001604051908101604052809392919081815260200183838082843760009201919091525092955061138d945050505050565b34801561069b57600080fd5b5061014d600480360360208110156106b257600080fd5b810190602081018135600160201b8111156106cc57600080fd5b8201836020820111156106de57600080fd5b803590602001918460018302840111600160201b831117156106ff57600080fd5b91908080601f01602080910402602001604051908101604052809392919081815260200183838082843760009201919091525092955061159b945050505050565b34801561074c57600080fd5b506102bb6004803603602081101561076357600080fd5b50356001600160a01b03166115a2565b34801561077f57600080fd5b506102bb6004803603602081101561079657600080fd5b5035611623565b60056020526000908152604090205481565b6007805460408051602060026001851615610100026000190190941693909304601f810184900484028201840190925281815292918301828280156108355780601f1061080a57610100808354040283529160200191610835565b820191906000526020600020905b81548152906001019060200180831161081857829003601f168201915b505050505081565b6000818152600460205260408120600101546001600160a01b0316156108ed576000828152600460208181526040928390206001810154600290910154845163021e2d3d60e31b81529384015292516001600160a01b03909316926310f169e8926024808201939291829003018186803b1580156108ba57600080fd5b505afa1580156108ce573d6000803e3d6000fd5b505050506040513d60208110156108e457600080fd5b50519050610914565b600282815481106108fa57fe5b600091825260209091206004600590920201015460ff1690505b919050565b6000818152600460205260408120600101546001600160a01b0316156109965760008281526004602081815260409283902060018101546002909101548451631981061960e01b81529384015292516001600160a01b03909316926319810619926024808201939291829003018186803b1580156108ba57600080fd5b5090565b6000818152600460205260408120600101546001600160a01b031615610a175760008281526004602081815260409283902060018101546002909101548451631c3db16d60e01b81529384015292516001600160a01b0390931692631c3db16d926024808201939291829003018186803b1580156108ba57600080fd5b60028281548110610a2457fe5b9060005260206000209060050201600301549050919050565b6006546001600160a01b03163314610a865760405162461bcd60e51b815260040180806020018281038252602581526020018061196f6025913960400191505060405180910390fd5b604080518281529051839133917f394027a5fa6e098a1191094d1719d6929b9abc535fcc0c8f448d6a4e756222769181900360200190a3610ac78282611687565b5050565b60046020526000908152604090208054600182015460029092015490916001600160a01b03169083565b8181610b01828261138d565b341015610b3f5760405162461bcd60e51b81526004018080602001828103825260258152602001806118ef6025913960400191505060405180910390fd5b6000848152600460205260409020600101546001600160a01b031615610c4d5760008481526004602081815260408084206001810154600290910154825163093225f160e31b8152948501818152602486019384528951604487015289516001600160a01b03909316966349912f8896349693958c959394909360649092019290860191908190849084905b83811015610be3578181015183820152602001610bcb565b50505050905090810190601f168015610c105780820380516001836020036101000a031916815260200191505b5093505050506000604051808303818588803b158015610c2f57600080fd5b505af1158015610c43573d6000803e3d6000fd5b5050505050610d9b565b60068054600086815260046020526040902060010180546001600160a01b0319166001600160a01b03928316179055905460028054919092169163c13517e19134919088908110610c9a57fe5b906000526020600020906005020160010154866040518463ffffffff1660e01b81526004018083815260200180602001828103825283818151815260200191508051906020019080838360005b83811015610cff578181015183820152602001610ce7565b50505050905090810190601f168015610d2c5780820380516001836020036101000a031916815260200191505b5093505050506020604051808303818588803b158015610d4b57600080fd5b505af1158015610d5f573d6000803e3d6000fd5b50505050506040513d6020811015610d7657600080fd5b5051600085815260046020908152604080832060020184905592825260059052208490555b50505050565b60028181548110610dae57fe5b6000918252602090912060059091020180546001820154600283015460038401546004909401546001600160a01b0390931694509092909160ff1685565b60035481565b6006546001600160a01b031681565b6000546001600160a01b031681565b6000546001600160a01b03163314610e6f576040805162461bcd60e51b815260206004820181905260248201527f43616e206f6e6c792062652063616c6c656420627920746865206f776e65722e604482015290519081900360640190fd5b600355565b60008181526004602052604081206001015481906001600160a01b031615610f2f576000838152600460208190526040918290206001810154600290910154835163afe15cfb60e01b81529283015282516001600160a01b039091169263afe15cfb9260248082019391829003018186803b158015610ef257600080fd5b505afa158015610f06573d6000803e3d6000fd5b505050506040513d6040811015610f1c57600080fd5b5080516020909101519092509050610f83565b600083815260046020526040902054915081610f7c5760405162461bcd60e51b81526004018080602001828103825260288152602001806118a06028913960400191505060405180910390fd5b5060035481015b915091565b600081610f948161159b565b341015610fd25760405162461bcd60e51b815260040180806020018281038252602a815260200180611994602a913960400191505060405180910390fd5b600160026040518060a00160405280336001600160a01b03168152602001878152602001348152602001600081526020016000600281111561101057fe5b9052815460018082018085556000948552602094859020845160059094020180546001600160a01b0319166001600160a01b03909416939093178355938301518282015560408301516002808401919091556060840151600384015560808401516004840180549193909260ff1990921691849081111561108d57fe5b02179055505050039150336001600160a01b0316827f141dfc18aa6a56fc816f44f0e9e2f1ebc92b15ab167770e17db5b084c10ed99560405160405180910390a35092915050565b60028083815481106110e357fe5b600091825260209091206004600590920201015460ff16600281111561110557fe5b14156111425760405162461bcd60e51b815260040180806020018281038252602a815260200180611914602a913960400191505060405180910390fd5b6000828152600460205260409020600101546001600160a01b0316156111c9576000828152600460205260409020600101546001600160a01b031633146111ba5760405162461bcd60e51b815260040180806020018281038252603c815260200180611864603c913960400191505060405180910390fd5b6111c48282611703565b610ac7565b6000546001600160a01b031633146112125760405162461bcd60e51b815260040180806020018281038252603181526020018061193e6031913960400191505060405180910390fd5b60016002838154811061122157fe5b600091825260209091206004600590920201015460ff16600281111561124357fe5b14156112c757600354600083815260046020526040902054420311156112905761128b826002848154811061127457fe5b906000526020600020906005020160030154611703565b6111c4565b60405162461bcd60e51b81526004018080602001828103825260218152602001806119be6021913960400191505060405180910390fd5b80600283815481106112d557fe5b9060005260206000209060050201600301819055506001600283815481106112f957fe5b60009182526020909120600460059092020101805460ff1916600183600281111561132057fe5b02179055506000828152600460205260409020429055600280548390811061134457fe5b600091825260208220600590910201546040516001600160a01b039091169184917fa5d41b970d849372be1da1481ffd78d162bfe57a7aa2fe4e5fb73481fa5ac24f9190a35050565b6000828152600460205260408120600101546001600160a01b0316156114aa5760008381526004602081815260408084206001810154600290910154825163791f8b7360e11b8152948501818152602486019384528851604487015288516001600160a01b039093169663f23f16e69692958a959294929360640192908601918190849084905b8381101561142c578181015183820152602001611414565b50505050905090810190601f1680156114595780820380516001836020036101000a031916815260200191505b50935050505060206040518083038186803b15801561147757600080fd5b505afa15801561148b573d6000803e3d6000fd5b505050506040513d60208110156114a157600080fd5b50519050611595565b6001600284815481106114b957fe5b600091825260209091206004600590920201015460ff1660028111156114db57fe5b141561158b5760065460405163f7434ea960e01b81526020600482018181528551602484015285516001600160a01b039094169363f7434ea993879383926044909201919085019080838360005b83811015611541578181015183820152602001611529565b50505050905090810190601f16801561156e5780820380516001836020036101000a031916815260200191505b509250505060206040518083038186803b15801561147757600080fd5b506001600160ff1b035b92915050565b5060015490565b6000546001600160a01b03163314611601576040805162461bcd60e51b815260206004820181905260248201527f43616e206f6e6c792062652063616c6c656420627920746865206f776e65722e604482015290519081900360640190fd5b600680546001600160a01b0319166001600160a01b0392909216919091179055565b6000546001600160a01b03163314611682576040805162461bcd60e51b815260206004820181905260248201527f43616e206f6e6c792062652063616c6c656420627920746865206f776e65722e604482015290519081900360640190fd5b600155565b600082815260056020908152604080832054835260049091529020600101546001600160a01b03166116ea5760405162461bcd60e51b81526004018080602001828103825260248152602001806119df6024913960400191505060405180910390fd5b600082815260056020526040902054610ac790826110d5565b60006002838154811061171257fe5b90600052602060002090600502019050806001015482111561176d576040805162461bcd60e51b815260206004820152600f60248201526e24b73b30b634b210393ab634b7339760891b604482015290519081900360640190fd5b6002600482015460ff16600281111561178257fe5b14156117bf5760405162461bcd60e51b81526004018080602001828103825260278152602001806118c86027913960400191505060405180910390fd5b6003810182905560048101805460ff1916600290811790915581015460405133916108fc811502916000818181858888f1505083546040805163188d362b60e11b8152600481018990526024810188905290516001600160a01b03909216945063311a6c569350604480820193506000929182900301818387803b15801561184657600080fd5b505af115801561185a573d6000803e3d6000fd5b5050505050505056fe41707065616c6564206469737075746573206d7573742062652072756c6564206279207468656972206261636b2075702061726269747261746f722e546865207370656369666965642064697370757465206973206e6f742061707065616c61626c652e5468652064697370757465206d757374206e6f7420626520736f6c76656420616c72656164792e4e6f7420656e6f7567682045544820746f20636f7665722061707065616c20636f7374732e54686520737065636966696564206469737075746520697320616c7265616479207265736f6c7665642e4e6f742061707065616c6564206469737075746573206d7573742062652072756c656420627920746865206f776e65722e43616e206f6e6c792062652063616c6c6564206279207468652061726269747261746f722e4e6f7420656e6f7567682045544820746f20636f766572206172626974726174696f6e20636f7374732e54696d65206f75742074696d6520686173206e6f7420706173736564207965742e5468652064697370757465206d7573742068617665206265656e2061707065616c65642ea265627a7a7231582051316f35bbf52b2511e9f2f0d537694090e0647ca3886610fb6185c823bfa20564736f6c63430005110032",
+  "sourceMap": "246:1457:7:-;;;489:33:6;;;-1:-1:-1;;;;;;489:33:6;512:10;489:33;;;701:243:7;5:2:-1;;;;30:1;27;20:12;5:2;701:243:7;;;;;;;;;;;;;;;13:3:-1;8;5:12;2:2;;;30:1;27;20:12;2:2;701:243:7;;;;;;;;;;;;;;;;;;;;;;;19:11:-1;11:20;;8:2;;;44:1;41;34:12;8:2;62:21;;;;123:4;114:14;;138:31;;;135:2;;;182:1;179;172:12;135:2;213:10;;261:11;244:29;;285:43;;;282:58;-1:-1;233:115;230:2;;;361:1;358;351:12;230:2;372:25;;-1:-1;701:243:7;;420:4:-1;411:14;;;;701:243:7;;;;;411:14:-1;701:243:7;23:1:-1;8:100;33:3;30:1;27:10;8:100;;;90:11;;;84:18;71:11;;;64:39;52:2;45:10;8:100;;;12:14;701:243:7;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;701:243:7;;;;;1396:16:6;:36;;;;-1:-1:-1;;;1741:7:5;:18;;;;-1:-1:-1;246:1457:7;;;;;;",
+  "deployedSourceMap": "246:1457:7:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;993:57:5;;8:9:-1;5:2;;;30:1;27;20:12;5:2;993:57:5;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;993:57:5;;:::i;:::-;;;;;;;;;;;;;;;;1091:32;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1091:32:5;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;8:100:-1;33:3;30:1;27:10;8:100;;;90:11;;;84:18;71:11;;;64:39;52:2;45:10;8:100;;;12:14;1091:32:5;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;6296:336;;8:9:-1;5:2;;;30:1;27;20:12;5:2;6296:336:5;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;6296:336:5;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2343:362;;8:9:-1;5:2;;;30:1;27;20:12;5:2;2343:362:5;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;2343:362:5;;:::i;6809:442::-;;8:9:-1;5:2;;;30:1;27;20:12;5:2;6809:442:5;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;6809:442:5;;:::i;5253:183::-;;8:9:-1;5:2;;;30:1;27;20:12;5:2;5253:183:5;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;5253:183:5;;;;;;;:::i;:::-;;935:52;;8:9:-1;5:2;;;30:1;27;20:12;5:2;935:52:5;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;935:52:5;;:::i;:::-;;;;;;;-1:-1:-1;;;;;935:52:5;;;;;;;;;;;;;;;;;;;;2877:660;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;2877:660:5;;;;;;;;;;;;;;-1:-1:-1;;;5:28;;2:2;;;46:1;43;36:12;2:2;2877:660:5;;35:9:-1;28:4;12:14;8:25;5:40;2:2;;;58:1;55;48:12;2:2;2877:660:5;;;;;;100:9:-1;95:1;81:12;77:20;67:8;63:35;60:50;-1:-1;;;25:12;22:29;11:107;8:2;;;131:1;128;121:12;8:2;2877:660:5;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;30:3:-1;22:6;14;1:33;99:1;81:16;;74:27;;;;-1:-1;2877:660:5;;-1:-1:-1;2877:660:5;;-1:-1:-1;;;;;2877:660:5:i;1168:31:6:-;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1168:31:6;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;1168:31:6;;:::i;:::-;;;;;-1:-1:-1;;;;;1168:31:6;-1:-1:-1;;;;;1168:31:6;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;910:19:5;;8:9:-1;5:2;;;30:1;27;20:12;5:2;910:19:5;;;:::i;1056:29::-;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1056:29:5;;;:::i;:::-;;;;-1:-1:-1;;;;;1056:29:5;;;;;;;;;;;;;;489:33:6;;8:9:-1;5:2;;;30:1;27;20:12;5:2;489:33:6;;;:::i;2102:92:5:-;;8:9:-1;5:2;;;30:1;27;20:12;5:2;2102:92:5;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;2102:92:5;;:::i;1216:485:7:-;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1216:485:7;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;1216:485:7;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;2820:499:6;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;2820:499:6;;;;;;;;;;;;;;-1:-1:-1;;;5:28;;2:2;;;46:1;43;36:12;2:2;2820:499:6;;35:9:-1;28:4;12:14;8:25;5:40;2:2;;;58:1;55;48:12;2:2;2820:499:6;;;;;;100:9:-1;95:1;81:12;77:20;67:8;63:35;60:50;-1:-1;;;25:12;22:29;11:107;8:2;;;131:1;128;121:12;8:2;2820:499:6;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;30:3:-1;22:6;14;1:33;99:1;81:16;;74:27;;;;-1:-1;2820:499:6;;-1:-1:-1;2820:499:6;;-1:-1:-1;;;;;2820:499:6:i;3664:1187:5:-;;8:9:-1;5:2;;;30:1;27;20:12;5:2;3664:1187:5;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;3664:1187:5;;;;;;;:::i;5687:463::-;;8:9:-1;5:2;;;30:1;27;20:12;5:2;5687:463:5;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;5687:463:5;;;;;;;;;;;;;;-1:-1:-1;;;5:28;;2:2;;;46:1;43;36:12;2:2;5687:463:5;;35:9:-1;28:4;12:14;8:25;5:40;2:2;;;58:1;55;48:12;2:2;5687:463:5;;;;;;100:9:-1;95:1;81:12;77:20;67:8;63:35;60:50;-1:-1;;;25:12;22:29;11:107;8:2;;;131:1;128;121:12;8:2;5687:463:5;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;30:3:-1;22:6;14;1:33;99:1;81:16;;74:27;;;;-1:-1;5687:463:5;;-1:-1:-1;5687:463:5;;-1:-1:-1;;;;;5687:463:5:i;1882:120:6:-;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1882:120:6;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;1882:120:6;;;;;;;;-1:-1:-1;;;5:28;;2:2;;;46:1;43;36:12;2:2;1882:120:6;;35:9:-1;28:4;12:14;8:25;5:40;2:2;;;58:1;55;48:12;2:2;1882:120:6;;;;;;100:9:-1;95:1;81:12;77:20;67:8;63:35;60:50;-1:-1;;;25:12;22:29;11:107;8:2;;;131:1;128;121:12;8:2;1882:120:6;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;30:3:-1;22:6;14;1:33;99:1;81:16;;74:27;;;;-1:-1;1882:120:6;;-1:-1:-1;1882:120:6;;-1:-1:-1;;;;;1882:120:6:i;1900:111:5:-;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1900:111:5;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;1900:111:5;-1:-1:-1;;;;;1900:111:5;;:::i;1589:123:6:-;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1589:123:6;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;1589:123:6;;:::i;993:57:5:-;;;;;;;;;;;;;:::o;1091:32::-;;;;;;;;;;;;;;;-1:-1:-1;;1091:32:5;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;6296:336::-;6356:20;6392:26;;;:14;:26;;;;;:37;;;-1:-1:-1;;;;;6392:37:5;:64;6388:237;;6479:26;;;;:14;:26;;;;;;;;;:37;;;;6531:42;;;;;6479:95;;-1:-1:-1;;;6479:95:5;;;;;;;;-1:-1:-1;;;;;6479:37:5;;;;:51;;:95;;;;;:26;:95;;;;;;:37;:95;;;5:2:-1;;;;30:1;27;20:12;5:2;6479:95:5;;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;6479:95:5;;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;6479:95:5;;-1:-1:-1;6388:237:5;;;6598:8;6607:10;6598:20;;;;;;;;;;;;;;;;:27;:20;;;;;:27;;;;;-1:-1:-1;6388:237:5;6296:336;;;:::o;2343:362::-;2410:14;2440:26;;;:14;:26;;;;;:37;;;-1:-1:-1;;;;;2440:37:5;:64;2436:262;;2559:26;;;;:14;:26;;;;;;;;;:37;;;;2618:42;;;;;2530:131;;-1:-1:-1;;;2530:131:5;;;;;;;;-1:-1:-1;;;;;2559:37:5;;;;2530:87;;:131;;;;;2559:26;2530:131;;;;;;2559:37;2530:131;;;5:2:-1;;;;30:1;27;20:12;2436:262:5;-1:-1:-1;2688:10:5;2343:362::o;6809:442::-;6869:11;6896:26;;;:14;:26;;;;;:37;;;-1:-1:-1;;;;;6896:37:5;:64;6892:322;;6996:26;;;;:14;:26;;;;;;;;;:37;;;;7048:42;;;;;6996:95;;-1:-1:-1;;;6996:95:5;;;;;;;;-1:-1:-1;;;;;6996:37:5;;;;:51;;:95;;;;;:26;:95;;;;;;:37;:95;;;5:2:-1;;;;30:1;27;20:12;6892:322:5;7187:8;7196:10;7187:20;;;;;;;;;;;;;;;;;;:27;;;7178:36;;6809:442;;;:::o;5253:183::-;629:10;;-1:-1:-1;;;;;629:10:5;607;:33;599:83;;;;-1:-1:-1;;;599:83:5;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;5335:50;;;;;;;;5366:10;;5354;;5335:50;;;;;;;;;5396:33;5410:10;5421:7;5396:13;:33::i;:::-;5253:183;;:::o;935:52::-;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;935:52:5;;;:::o;2877:660::-;2967:10;2979;791:34;802:10;814;791;:34::i;:::-;778:9;:47;;770:97;;;;-1:-1:-1;;;770:97:5;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;3066:1;3005:26;;;:14;:26;;;;;:37;;;-1:-1:-1;;;;;3005:37:5;:64;3001:530;;3083:26;;;;:14;:26;;;;;;;;:37;;;;3145:42;;;;;3083:117;;-1:-1:-1;;;3083:117:5;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;3083:37:5;;;;:44;;3134:9;;3145:42;;3189:10;;3083:117;;;;;;;;;;;;;;;;;;;;8:100:-1;33:3;30:1;27:10;8:100;;;90:11;;;84:18;71:11;;;64:39;52:2;45:10;8:100;;;12:14;3083:117:5;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;3083:117:5;;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;3083:117:5;;;;;3001:530;;;3269:10;;;;3229:26;;;:14;:26;;;;;3269:10;3229:37;:50;;-1:-1:-1;;;;;;3229:50:5;-1:-1:-1;;;;;3269:10:5;;;3229:50;;;3338:10;;3380:8;:20;;3338:10;;;;;:24;;3369:9;;3380:8;3244:10;;3380:20;;;;;;;;;;;;;;;;:28;;;3410:10;3338:83;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1:-1;8:100;33:3;30:1;27:10;8:100;;;90:11;;;84:18;71:11;;;64:39;52:2;45:10;8:100;;;12:14;3338:83:5;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;3338:83:5;;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;3338:83:5;;;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;3338:83:5;3293:26;;;;:14;3338:83;3293:26;;;;;;;:42;;:128;;;3435:72;;;:28;:72;;;:85;;;3001:530;2877:660;;;;:::o;1168:31:6:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;1168:31:6;;;;-1:-1:-1;1168:31:6;;;;;;;:::o;910:19:5:-;;;;:::o;1056:29::-;;;-1:-1:-1;;;;;1056:29:5;;:::o;489:33:6:-;;;-1:-1:-1;;;;;489:33:6;;:::o;2102:92:5:-;931:5:6;;-1:-1:-1;;;;;931:5:6;919:10;:17;911:62;;;;;-1:-1:-1;;;911:62:6;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2169:7:5;:18;2102:92::o;1216:485:7:-;1275:10;1311:26;;;:14;:26;;;;;:37;;;1275:10;;-1:-1:-1;;;;;1311:37:7;:64;1307:388;;1404:26;;;;:14;:26;;;;;;;;;:37;;;;1455:42;;;;;1404:94;;-1:-1:-1;;;1404:94:7;;;;;;;;-1:-1:-1;;;;;1404:37:7;;;;:50;;:94;;;;;;;;;;;:37;:94;;;5:2:-1;;;;30:1;27;20:12;5:2;1404:94:7;;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;1404:94:7;;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;1404:94:7;;;;;;;;;-1:-1:-1;1404:94:7;-1:-1:-1;1307:388:7;;;1535:26;;;;:14;:26;;;;;:37;;-1:-1:-1;1594:10:7;1586:63;;;;-1:-1:-1;;;1586:63:7;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;1677:7:7;;1669:15;;1307:388;1216:485;;;:::o;2820:499:6:-;2940:14;2920:10;1070:27;1086:10;1070:15;:27::i;:::-;1057:9;:40;;1049:95;;;;-1:-1:-1;;;1049:95:6;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;3200:1;2979:8;2993:203;;;;;;;;3045:10;-1:-1:-1;;;;;2993:203:6;;;;;3079:8;2993:203;;;;3106:9;2993:203;;;;3137:1;2993:203;;;;3160:21;2993:203;;;;;;;;;;27:10:-1;;39:1;23:18;;;45:23;;;-1:-1;2979:218:6;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;;2979:218:6;-1:-1:-1;;;;;2979:218:6;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;2979:218:6;;;;;;;;;;;;;;;;;;;;:222;2967:234;;3300:10;-1:-1:-1;;;;;3261:51:6;3277:9;3261:51;;;;;;;;;;2820:499;;;;;:::o;3664:1187:5:-;3771:20;3740:8;3749:10;3740:20;;;;;;;;;;;;;;;;:27;:20;;;;;:27;;;;:51;;;;;;;;;;3732:106;;;;-1:-1:-1;;;3732:106:5;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;3913:1;3852:26;;;:14;:26;;;;;:37;;;-1:-1:-1;;;;;3852:37:5;:64;3848:997;;3967:26;;;;:14;:26;;;;;:37;;;-1:-1:-1;;;;;3967:37:5;3952:10;3940:64;3932:137;;;;-1:-1:-1;;;3932:137:5;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;4083:38;4101:10;4113:7;4083:17;:38::i;:::-;3848:997;;;4174:5;;-1:-1:-1;;;;;4174:5:5;4160:10;:19;4152:81;;;;-1:-1:-1;;;4152:81:5;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;4282:24;4251:8;4260:10;4251:20;;;;;;;;;;;;;;;;:27;:20;;;;;:27;;;;:55;;;;;;;;;4247:588;;;4376:7;;4336:26;;;;:14;:26;;;;;:37;4330:3;:43;:53;4326:203;;;4405:58;4423:10;4435:8;4444:10;4435:20;;;;;;;;;;;;;;;;;;:27;;;4405:17;:58::i;:::-;4326:203;;;4486:43;;-1:-1:-1;;;4486:43:5;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;4247:588;4598:7;4568:8;4577:10;4568:20;;;;;;;;;;;;;;;;;;:27;;:37;;;;4653:24;4623:8;4632:10;4623:20;;;;;;;;;;;;;;;;:27;:20;;;;;:27;:54;;-1:-1:-1;;4623:54:5;;;;;;;;;;;;;;;-1:-1:-1;4695:26:5;;;;:14;:26;;;;;4735:3;4695:43;;4788:8;:20;;4710:10;;4788:20;;;;;;;;;;;;;;;;;;:31;4761:59;;-1:-1:-1;;;;;4788:31:5;;;;4776:10;;4761:59;;4788:20;4761:59;3664:1187;;:::o;5687:463::-;5769:9;5794:26;;;:14;:26;;;;;:37;;;-1:-1:-1;;;;;5794:37:5;:64;5790:353;;5879:26;;;;:14;:26;;;;;;;;:37;;;;5928:42;;;;;5879:104;;-1:-1:-1;;;5879:104:5;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;5879:37:5;;;;:48;;5928:42;;5972:10;;5879:104;;;;;;;;;;;;;;;;;8:100:-1;33:3;30:1;27:10;8:100;;;90:11;;;84:18;71:11;;;64:39;52:2;45:10;8:100;;;12:14;5879:104:5;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;5879:104:5;;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;5879:104:5;;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;5879:104:5;;-1:-1:-1;5790:353:5;;;6033:24;6002:8;6011:10;6002:20;;;;;;;;;;;;;;;;:27;:20;;;;;:27;;;;:55;;;;;;;;;5998:145;;;6066:10;;:38;;-1:-1:-1;;;6066:38:5;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;6066:10:5;;;;:26;;6093:10;;6066:38;;;;;;;;;;;;;;:10;8:100:-1;33:3;30:1;27:10;8:100;;;90:11;;;84:18;71:11;;;64:39;52:2;45:10;8:100;;;12:14;6066:38:5;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;8:9:-1;5:2;;;30:1;27;20:12;5998:145:5;-1:-1:-1;;;;;;5998:145:5;5687:463;;;;:::o;1882:120:6:-;-1:-1:-1;1979:16:6;;;1882:120::o;1900:111:5:-;931:5:6;;-1:-1:-1;;;;;931:5:6;919:10;:17;911:62;;;;;-1:-1:-1;;;911:62:6;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1980:10:5;:24;;-1:-1:-1;;;;;;1980:24:5;-1:-1:-1;;;;;1980:24:5;;;;;;;;;;1900:111::o;1589:123:6:-;931:5;;-1:-1:-1;;;;;931:5:6;919:10;:17;911:62;;;;;-1:-1:-1;;;911:62:6;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1669:16;:36;1589:123::o;7428:328:5:-;7613:1;7537:40;;;:28;:40;;;;;;;;;7522:56;;:14;:56;;;;;:67;;;-1:-1:-1;;;;;7522:67:5;7501:177;;;;-1:-1:-1;;;7501:177:5;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;7699:40;;;;:28;:40;;;;;;7688:61;;7741:7;7688:10;:61::i;3537:487:6:-;3608:29;3640:8;3649:10;3640:20;;;;;;;;;;;;;;;;;;3608:52;;3689:7;:15;;;3678:7;:26;;3670:54;;;;;-1:-1:-1;;;3670:54:6;;;;;;;;;;;;-1:-1:-1;;;3670:54:6;;;;;;;;;;;;;;;3760:20;3742:14;;;;;;:38;;;;;;;;;;3734:90;;;;-1:-1:-1;;;3734:90:6;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;3835:14;;;:24;;;3869:14;;;:37;;-1:-1:-1;;3869:37:6;3886:20;3869:37;;;;;;3933:11;;;3917:28;;:10;;:28;;;;;-1:-1:-1;3917:28:6;-1:-1:-1;3917:28:6;3933:11;3917:10;:28;;-1:-1:-1;;3974:18:6;;:43;;;-1:-1:-1;;;3974:43:6;;;;;;;;;;;;;;;;-1:-1:-1;;;;;3974:18:6;;;;-1:-1:-1;3974:23:6;;-1:-1:-1;3974:43:6;;;;;-1:-1:-1;3974:18:6;;:43;;;;;;:18;;:43;;;5:2:-1;;;;30:1;27;20:12;5:2;3974:43:6;;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;3974:43:6;;;;3537:487;;;:::o",
+  "source": "pragma solidity ^0.5.17;\n\nimport \"./AppealableArbitrator.sol\";\n\n/**\n *  @title EnhancedAppealableArbitrator\n *  @author Enrique Piqueras - <epiquerass@gmail.com>\n *  @dev Implementation of `AppealableArbitrator` that supports `appealPeriod`.\n */\ncontract EnhancedAppealableArbitrator is AppealableArbitrator {\n    /* Constructor */\n\n    /* solium-disable no-empty-blocks */\n    /** @dev Constructs the `EnhancedAppealableArbitrator` contract.\n     *  @param _arbitrationPrice The amount to be paid for arbitration.\n     *  @param _arbitrator The back up arbitrator.\n     *  @param _arbitratorExtraData Not used by this contract.\n     *  @param _timeOut The time out for the appeal period.\n     */\n    constructor(\n        uint _arbitrationPrice,\n        IArbitrator _arbitrator,\n        bytes memory _arbitratorExtraData,\n        uint _timeOut\n    ) public AppealableArbitrator(_arbitrationPrice, _arbitrator, _arbitratorExtraData, _timeOut) {}\n    /* solium-enable no-empty-blocks */\n\n    /* Public Views */\n\n    /** @dev Compute the start and end of the dispute's current or next appeal period, if possible.\n     *  @param _disputeID ID of the dispute.\n     *  @return The start and end of the period.\n     */\n    function appealPeriod(uint _disputeID) public view returns(uint start, uint end) {\n        if (appealDisputes[_disputeID].arbitrator != IArbitrator(address(0)))\n            (start, end) = appealDisputes[_disputeID].arbitrator.appealPeriod(appealDisputes[_disputeID].appealDisputeID);\n        else {\n            start = appealDisputes[_disputeID].rulingTime;\n            require(start != 0, \"The specified dispute is not appealable.\");\n            end = start + timeOut;\n        }\n    }\n}",
+  "sourcePath": "C:/Projects/TWITTER/cloned/Proof-Of-Humanity/contracts/test-purposes/EnhancedAppealableArbitrator.sol",
+  "ast": {
+    "absolutePath": "/C/Projects/TWITTER/cloned/Proof-Of-Humanity/contracts/test-purposes/EnhancedAppealableArbitrator.sol",
+    "exportedSymbols": {
+      "EnhancedAppealableArbitrator": [
+        5152
+      ]
+    },
+    "id": 5153,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 5073,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".17"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:7"
+      },
+      {
+        "absolutePath": "/C/Projects/TWITTER/cloned/Proof-Of-Humanity/contracts/test-purposes/AppealableArbitrator.sol",
+        "file": "./AppealableArbitrator.sol",
+        "id": 5074,
+        "nodeType": "ImportDirective",
+        "scope": 5153,
+        "sourceUnit": 4818,
+        "src": "26:36:7",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 5075,
+              "name": "AppealableArbitrator",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 4817,
+              "src": "287:20:7",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_AppealableArbitrator_$4817",
+                "typeString": "contract AppealableArbitrator"
+              }
+            },
+            "id": 5076,
+            "nodeType": "InheritanceSpecifier",
+            "src": "287:20:7"
+          }
+        ],
+        "contractDependencies": [
+          4817,
+          5071,
+          5171,
+          5252
+        ],
+        "contractKind": "contract",
+        "documentation": " @title EnhancedAppealableArbitrator\n @author Enrique Piqueras - <epiquerass@gmail.com>\n @dev Implementation of `AppealableArbitrator` that supports `appealPeriod`.",
+        "fullyImplemented": true,
+        "id": 5152,
+        "linearizedBaseContracts": [
+          5152,
+          4817,
+          5171,
+          5071,
+          5252
+        ],
+        "name": "EnhancedAppealableArbitrator",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": {
+              "id": 5093,
+              "nodeType": "Block",
+              "src": "942:2:7",
+              "statements": []
+            },
+            "documentation": "@dev Constructs the `EnhancedAppealableArbitrator` contract.\n @param _arbitrationPrice The amount to be paid for arbitration.\n @param _arbitrator The back up arbitrator.\n @param _arbitratorExtraData Not used by this contract.\n @param _timeOut The time out for the appeal period.",
+            "id": 5094,
+            "implemented": true,
+            "kind": "constructor",
+            "modifiers": [
+              {
+                "arguments": [
+                  {
+                    "argumentTypes": null,
+                    "id": 5087,
+                    "name": "_arbitrationPrice",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 5078,
+                    "src": "878:17:7",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  {
+                    "argumentTypes": null,
+                    "id": 5088,
+                    "name": "_arbitrator",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 5080,
+                    "src": "897:11:7",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IArbitrator_$5252",
+                      "typeString": "contract IArbitrator"
+                    }
+                  },
+                  {
+                    "argumentTypes": null,
+                    "id": 5089,
+                    "name": "_arbitratorExtraData",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 5082,
+                    "src": "910:20:7",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_memory_ptr",
+                      "typeString": "bytes memory"
+                    }
+                  },
+                  {
+                    "argumentTypes": null,
+                    "id": 5090,
+                    "name": "_timeOut",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 5084,
+                    "src": "932:8:7",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  }
+                ],
+                "id": 5091,
+                "modifierName": {
+                  "argumentTypes": null,
+                  "id": 5086,
+                  "name": "AppealableArbitrator",
+                  "nodeType": "Identifier",
+                  "overloadedDeclarations": [],
+                  "referencedDeclaration": 4817,
+                  "src": "857:20:7",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_type$_t_contract$_AppealableArbitrator_$4817_$",
+                    "typeString": "type(contract AppealableArbitrator)"
+                  }
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "857:84:7"
+              }
+            ],
+            "name": "",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 5085,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 5078,
+                  "name": "_arbitrationPrice",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5094,
+                  "src": "722:22:7",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 5077,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "722:4:7",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 5080,
+                  "name": "_arbitrator",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5094,
+                  "src": "754:23:7",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IArbitrator_$5252",
+                    "typeString": "contract IArbitrator"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 5079,
+                    "name": "IArbitrator",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 5252,
+                    "src": "754:11:7",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IArbitrator_$5252",
+                      "typeString": "contract IArbitrator"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 5082,
+                  "name": "_arbitratorExtraData",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5094,
+                  "src": "787:33:7",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_memory_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 5081,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "787:5:7",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 5084,
+                  "name": "_timeOut",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5094,
+                  "src": "830:13:7",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 5083,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "830:4:7",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "712:137:7"
+            },
+            "returnParameters": {
+              "id": 5092,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "942:0:7"
+            },
+            "scope": 5152,
+            "src": "701:243:7",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 5150,
+              "nodeType": "Block",
+              "src": "1297:404:7",
+              "statements": [
+                {
+                  "condition": {
+                    "argumentTypes": null,
+                    "commonType": {
+                      "typeIdentifier": "t_contract$_IArbitrator_$5252",
+                      "typeString": "contract IArbitrator"
+                    },
+                    "id": 5112,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "argumentTypes": null,
+                      "expression": {
+                        "argumentTypes": null,
+                        "baseExpression": {
+                          "argumentTypes": null,
+                          "id": 5103,
+                          "name": "appealDisputes",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 4341,
+                          "src": "1311:14:7",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_AppealDispute_$4302_storage_$",
+                            "typeString": "mapping(uint256 => struct AppealableArbitrator.AppealDispute storage ref)"
+                          }
+                        },
+                        "id": 5105,
+                        "indexExpression": {
+                          "argumentTypes": null,
+                          "id": 5104,
+                          "name": "_disputeID",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 5096,
+                          "src": "1326:10:7",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "IndexAccess",
+                        "src": "1311:26:7",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_AppealDispute_$4302_storage",
+                          "typeString": "struct AppealableArbitrator.AppealDispute storage ref"
+                        }
+                      },
+                      "id": 5106,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "arbitrator",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 4299,
+                      "src": "1311:37:7",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_contract$_IArbitrator_$5252",
+                        "typeString": "contract IArbitrator"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": "!=",
+                    "rightExpression": {
+                      "argumentTypes": null,
+                      "arguments": [
+                        {
+                          "argumentTypes": null,
+                          "arguments": [
+                            {
+                              "argumentTypes": null,
+                              "hexValue": "30",
+                              "id": 5109,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "kind": "number",
+                              "lValueRequested": false,
+                              "nodeType": "Literal",
+                              "src": "1372:1:7",
+                              "subdenomination": null,
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_rational_0_by_1",
+                                "typeString": "int_const 0"
+                              },
+                              "value": "0"
+                            }
+                          ],
+                          "expression": {
+                            "argumentTypes": [
+                              {
+                                "typeIdentifier": "t_rational_0_by_1",
+                                "typeString": "int_const 0"
+                              }
+                            ],
+                            "id": 5108,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": true,
+                            "lValueRequested": false,
+                            "nodeType": "ElementaryTypeNameExpression",
+                            "src": "1364:7:7",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_type$_t_address_$",
+                              "typeString": "type(address)"
+                            },
+                            "typeName": "address"
+                          },
+                          "id": 5110,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "kind": "typeConversion",
+                          "lValueRequested": false,
+                          "names": [],
+                          "nodeType": "FunctionCall",
+                          "src": "1364:10:7",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address_payable",
+                            "typeString": "address payable"
+                          }
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": [
+                          {
+                            "typeIdentifier": "t_address_payable",
+                            "typeString": "address payable"
+                          }
+                        ],
+                        "id": 5107,
+                        "name": "IArbitrator",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 5252,
+                        "src": "1352:11:7",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_type$_t_contract$_IArbitrator_$5252_$",
+                          "typeString": "type(contract IArbitrator)"
+                        }
+                      },
+                      "id": 5111,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "typeConversion",
+                      "lValueRequested": false,
+                      "names": [],
+                      "nodeType": "FunctionCall",
+                      "src": "1352:23:7",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_contract$_IArbitrator_$5252",
+                        "typeString": "contract IArbitrator"
+                      }
+                    },
+                    "src": "1311:64:7",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "falseBody": {
+                    "id": 5148,
+                    "nodeType": "Block",
+                    "src": "1513:182:7",
+                    "statements": [
+                      {
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 5133,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "leftHandSide": {
+                            "argumentTypes": null,
+                            "id": 5128,
+                            "name": "start",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 5099,
+                            "src": "1527:5:7",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            }
+                          },
+                          "nodeType": "Assignment",
+                          "operator": "=",
+                          "rightHandSide": {
+                            "argumentTypes": null,
+                            "expression": {
+                              "argumentTypes": null,
+                              "baseExpression": {
+                                "argumentTypes": null,
+                                "id": 5129,
+                                "name": "appealDisputes",
+                                "nodeType": "Identifier",
+                                "overloadedDeclarations": [],
+                                "referencedDeclaration": 4341,
+                                "src": "1535:14:7",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_AppealDispute_$4302_storage_$",
+                                  "typeString": "mapping(uint256 => struct AppealableArbitrator.AppealDispute storage ref)"
+                                }
+                              },
+                              "id": 5131,
+                              "indexExpression": {
+                                "argumentTypes": null,
+                                "id": 5130,
+                                "name": "_disputeID",
+                                "nodeType": "Identifier",
+                                "overloadedDeclarations": [],
+                                "referencedDeclaration": 5096,
+                                "src": "1550:10:7",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                }
+                              },
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "nodeType": "IndexAccess",
+                              "src": "1535:26:7",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_struct$_AppealDispute_$4302_storage",
+                                "typeString": "struct AppealableArbitrator.AppealDispute storage ref"
+                              }
+                            },
+                            "id": 5132,
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "memberName": "rulingTime",
+                            "nodeType": "MemberAccess",
+                            "referencedDeclaration": 4297,
+                            "src": "1535:37:7",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            }
+                          },
+                          "src": "1527:45:7",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "id": 5134,
+                        "nodeType": "ExpressionStatement",
+                        "src": "1527:45:7"
+                      },
+                      {
+                        "expression": {
+                          "argumentTypes": null,
+                          "arguments": [
+                            {
+                              "argumentTypes": null,
+                              "commonType": {
+                                "typeIdentifier": "t_uint256",
+                                "typeString": "uint256"
+                              },
+                              "id": 5138,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "leftExpression": {
+                                "argumentTypes": null,
+                                "id": 5136,
+                                "name": "start",
+                                "nodeType": "Identifier",
+                                "overloadedDeclarations": [],
+                                "referencedDeclaration": 5099,
+                                "src": "1594:5:7",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                }
+                              },
+                              "nodeType": "BinaryOperation",
+                              "operator": "!=",
+                              "rightExpression": {
+                                "argumentTypes": null,
+                                "hexValue": "30",
+                                "id": 5137,
+                                "isConstant": false,
+                                "isLValue": false,
+                                "isPure": true,
+                                "kind": "number",
+                                "lValueRequested": false,
+                                "nodeType": "Literal",
+                                "src": "1603:1:7",
+                                "subdenomination": null,
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_rational_0_by_1",
+                                  "typeString": "int_const 0"
+                                },
+                                "value": "0"
+                              },
+                              "src": "1594:10:7",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_bool",
+                                "typeString": "bool"
+                              }
+                            },
+                            {
+                              "argumentTypes": null,
+                              "hexValue": "546865207370656369666965642064697370757465206973206e6f742061707065616c61626c652e",
+                              "id": 5139,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "kind": "string",
+                              "lValueRequested": false,
+                              "nodeType": "Literal",
+                              "src": "1606:42:7",
+                              "subdenomination": null,
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_stringliteral_19a1fcb6db8f343cf29979267ea866ad2f81c74dae87f9ac855ca3f42fe764be",
+                                "typeString": "literal_string \"The specified dispute is not appealable.\""
+                              },
+                              "value": "The specified dispute is not appealable."
+                            }
+                          ],
+                          "expression": {
+                            "argumentTypes": [
+                              {
+                                "typeIdentifier": "t_bool",
+                                "typeString": "bool"
+                              },
+                              {
+                                "typeIdentifier": "t_stringliteral_19a1fcb6db8f343cf29979267ea866ad2f81c74dae87f9ac855ca3f42fe764be",
+                                "typeString": "literal_string \"The specified dispute is not appealable.\""
+                              }
+                            ],
+                            "id": 5135,
+                            "name": "require",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [
+                              5300,
+                              5301
+                            ],
+                            "referencedDeclaration": 5301,
+                            "src": "1586:7:7",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                              "typeString": "function (bool,string memory) pure"
+                            }
+                          },
+                          "id": 5140,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "kind": "functionCall",
+                          "lValueRequested": false,
+                          "names": [],
+                          "nodeType": "FunctionCall",
+                          "src": "1586:63:7",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_tuple$__$",
+                            "typeString": "tuple()"
+                          }
+                        },
+                        "id": 5141,
+                        "nodeType": "ExpressionStatement",
+                        "src": "1586:63:7"
+                      },
+                      {
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 5146,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "leftHandSide": {
+                            "argumentTypes": null,
+                            "id": 5142,
+                            "name": "end",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 5101,
+                            "src": "1663:3:7",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            }
+                          },
+                          "nodeType": "Assignment",
+                          "operator": "=",
+                          "rightHandSide": {
+                            "argumentTypes": null,
+                            "commonType": {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            },
+                            "id": 5145,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "leftExpression": {
+                              "argumentTypes": null,
+                              "id": 5143,
+                              "name": "start",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 5099,
+                              "src": "1669:5:7",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_uint256",
+                                "typeString": "uint256"
+                              }
+                            },
+                            "nodeType": "BinaryOperation",
+                            "operator": "+",
+                            "rightExpression": {
+                              "argumentTypes": null,
+                              "id": 5144,
+                              "name": "timeOut",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 4337,
+                              "src": "1677:7:7",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_uint256",
+                                "typeString": "uint256"
+                              }
+                            },
+                            "src": "1669:15:7",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            }
+                          },
+                          "src": "1663:21:7",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "id": 5147,
+                        "nodeType": "ExpressionStatement",
+                        "src": "1663:21:7"
+                      }
+                    ]
+                  },
+                  "id": 5149,
+                  "nodeType": "IfStatement",
+                  "src": "1307:388:7",
+                  "trueBody": {
+                    "expression": {
+                      "argumentTypes": null,
+                      "id": 5126,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "leftHandSide": {
+                        "argumentTypes": null,
+                        "components": [
+                          {
+                            "argumentTypes": null,
+                            "id": 5113,
+                            "name": "start",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 5099,
+                            "src": "1390:5:7",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            }
+                          },
+                          {
+                            "argumentTypes": null,
+                            "id": 5114,
+                            "name": "end",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 5101,
+                            "src": "1397:3:7",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            }
+                          }
+                        ],
+                        "id": 5115,
+                        "isConstant": false,
+                        "isInlineArray": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": true,
+                        "nodeType": "TupleExpression",
+                        "src": "1389:12:7",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_tuple$_t_uint256_$_t_uint256_$",
+                          "typeString": "tuple(uint256,uint256)"
+                        }
+                      },
+                      "nodeType": "Assignment",
+                      "operator": "=",
+                      "rightHandSide": {
+                        "argumentTypes": null,
+                        "arguments": [
+                          {
+                            "argumentTypes": null,
+                            "expression": {
+                              "argumentTypes": null,
+                              "baseExpression": {
+                                "argumentTypes": null,
+                                "id": 5121,
+                                "name": "appealDisputes",
+                                "nodeType": "Identifier",
+                                "overloadedDeclarations": [],
+                                "referencedDeclaration": 4341,
+                                "src": "1455:14:7",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_AppealDispute_$4302_storage_$",
+                                  "typeString": "mapping(uint256 => struct AppealableArbitrator.AppealDispute storage ref)"
+                                }
+                              },
+                              "id": 5123,
+                              "indexExpression": {
+                                "argumentTypes": null,
+                                "id": 5122,
+                                "name": "_disputeID",
+                                "nodeType": "Identifier",
+                                "overloadedDeclarations": [],
+                                "referencedDeclaration": 5096,
+                                "src": "1470:10:7",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                }
+                              },
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "nodeType": "IndexAccess",
+                              "src": "1455:26:7",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_struct$_AppealDispute_$4302_storage",
+                                "typeString": "struct AppealableArbitrator.AppealDispute storage ref"
+                              }
+                            },
+                            "id": 5124,
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "memberName": "appealDisputeID",
+                            "nodeType": "MemberAccess",
+                            "referencedDeclaration": 4301,
+                            "src": "1455:42:7",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            }
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            }
+                          ],
+                          "expression": {
+                            "argumentTypes": null,
+                            "expression": {
+                              "argumentTypes": null,
+                              "baseExpression": {
+                                "argumentTypes": null,
+                                "id": 5116,
+                                "name": "appealDisputes",
+                                "nodeType": "Identifier",
+                                "overloadedDeclarations": [],
+                                "referencedDeclaration": 4341,
+                                "src": "1404:14:7",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_AppealDispute_$4302_storage_$",
+                                  "typeString": "mapping(uint256 => struct AppealableArbitrator.AppealDispute storage ref)"
+                                }
+                              },
+                              "id": 5118,
+                              "indexExpression": {
+                                "argumentTypes": null,
+                                "id": 5117,
+                                "name": "_disputeID",
+                                "nodeType": "Identifier",
+                                "overloadedDeclarations": [],
+                                "referencedDeclaration": 5096,
+                                "src": "1419:10:7",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                }
+                              },
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "nodeType": "IndexAccess",
+                              "src": "1404:26:7",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_struct$_AppealDispute_$4302_storage",
+                                "typeString": "struct AppealableArbitrator.AppealDispute storage ref"
+                              }
+                            },
+                            "id": 5119,
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "memberName": "arbitrator",
+                            "nodeType": "MemberAccess",
+                            "referencedDeclaration": 4299,
+                            "src": "1404:37:7",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_contract$_IArbitrator_$5252",
+                              "typeString": "contract IArbitrator"
+                            }
+                          },
+                          "id": 5120,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberName": "appealPeriod",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 5237,
+                          "src": "1404:50:7",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_function_external_view$_t_uint256_$returns$_t_uint256_$_t_uint256_$",
+                            "typeString": "function (uint256) view external returns (uint256,uint256)"
+                          }
+                        },
+                        "id": 5125,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "functionCall",
+                        "lValueRequested": false,
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "1404:94:7",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_tuple$_t_uint256_$_t_uint256_$",
+                          "typeString": "tuple(uint256,uint256)"
+                        }
+                      },
+                      "src": "1389:109:7",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_tuple$__$",
+                        "typeString": "tuple()"
+                      }
+                    },
+                    "id": 5127,
+                    "nodeType": "ExpressionStatement",
+                    "src": "1389:109:7"
+                  }
+                }
+              ]
+            },
+            "documentation": "@dev Compute the start and end of the dispute's current or next appeal period, if possible.\n @param _disputeID ID of the dispute.\n @return The start and end of the period.",
+            "id": 5151,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "appealPeriod",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 5097,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 5096,
+                  "name": "_disputeID",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5151,
+                  "src": "1238:15:7",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 5095,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1238:4:7",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1237:17:7"
+            },
+            "returnParameters": {
+              "id": 5102,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 5099,
+                  "name": "start",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5151,
+                  "src": "1275:10:7",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 5098,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1275:4:7",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 5101,
+                  "name": "end",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5151,
+                  "src": "1287:8:7",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 5100,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1287:4:7",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1274:22:7"
+            },
+            "scope": 5152,
+            "src": "1216:485:7",
+            "stateMutability": "view",
+            "superFunction": 5237,
+            "visibility": "public"
+          }
+        ],
+        "scope": 5153,
+        "src": "246:1457:7"
+      }
+    ],
+    "src": "0:1703:7"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "/C/Projects/TWITTER/cloned/Proof-Of-Humanity/contracts/test-purposes/EnhancedAppealableArbitrator.sol",
+      "exportedSymbols": {
+        "EnhancedAppealableArbitrator": [
+          5152
+        ]
+      }
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "^",
+            "0.5",
+            ".17"
+          ]
+        },
+        "id": 5073,
+        "name": "PragmaDirective",
+        "src": "0:24:7"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 4818,
+          "absolutePath": "/C/Projects/TWITTER/cloned/Proof-Of-Humanity/contracts/test-purposes/AppealableArbitrator.sol",
+          "file": "./AppealableArbitrator.sol",
+          "scope": 5153,
+          "symbolAliases": [
+            null
+          ],
+          "unitAlias": ""
+        },
+        "id": 5074,
+        "name": "ImportDirective",
+        "src": "26:36:7"
+      },
+      {
+        "attributes": {
+          "contractDependencies": [
+            4817,
+            5071,
+            5171,
+            5252
+          ],
+          "contractKind": "contract",
+          "documentation": " @title EnhancedAppealableArbitrator\n @author Enrique Piqueras - <epiquerass@gmail.com>\n @dev Implementation of `AppealableArbitrator` that supports `appealPeriod`.",
+          "fullyImplemented": true,
+          "linearizedBaseContracts": [
+            5152,
+            4817,
+            5171,
+            5071,
+            5252
+          ],
+          "name": "EnhancedAppealableArbitrator",
+          "scope": 5153
+        },
+        "children": [
+          {
+            "attributes": {
+              "arguments": null
+            },
+            "children": [
+              {
+                "attributes": {
+                  "contractScope": null,
+                  "name": "AppealableArbitrator",
+                  "referencedDeclaration": 4817,
+                  "type": "contract AppealableArbitrator"
+                },
+                "id": 5075,
+                "name": "UserDefinedTypeName",
+                "src": "287:20:7"
+              }
+            ],
+            "id": 5076,
+            "name": "InheritanceSpecifier",
+            "src": "287:20:7"
+          },
+          {
+            "attributes": {
+              "documentation": "@dev Constructs the `EnhancedAppealableArbitrator` contract.\n @param _arbitrationPrice The amount to be paid for arbitration.\n @param _arbitrator The back up arbitrator.\n @param _arbitratorExtraData Not used by this contract.\n @param _timeOut The time out for the appeal period.",
+              "implemented": true,
+              "isConstructor": true,
+              "kind": "constructor",
+              "name": "",
+              "scope": 5152,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_arbitrationPrice",
+                      "scope": 5094,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
+                        },
+                        "id": 5077,
+                        "name": "ElementaryTypeName",
+                        "src": "722:4:7"
+                      }
+                    ],
+                    "id": 5078,
+                    "name": "VariableDeclaration",
+                    "src": "722:22:7"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_arbitrator",
+                      "scope": 5094,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "contract IArbitrator",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "contractScope": null,
+                          "name": "IArbitrator",
+                          "referencedDeclaration": 5252,
+                          "type": "contract IArbitrator"
+                        },
+                        "id": 5079,
+                        "name": "UserDefinedTypeName",
+                        "src": "754:11:7"
+                      }
+                    ],
+                    "id": 5080,
+                    "name": "VariableDeclaration",
+                    "src": "754:23:7"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_arbitratorExtraData",
+                      "scope": 5094,
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "type": "bytes",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bytes",
+                          "type": "bytes"
+                        },
+                        "id": 5081,
+                        "name": "ElementaryTypeName",
+                        "src": "787:5:7"
+                      }
+                    ],
+                    "id": 5082,
+                    "name": "VariableDeclaration",
+                    "src": "787:33:7"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_timeOut",
+                      "scope": 5094,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
+                        },
+                        "id": 5083,
+                        "name": "ElementaryTypeName",
+                        "src": "830:4:7"
+                      }
+                    ],
+                    "id": 5084,
+                    "name": "VariableDeclaration",
+                    "src": "830:13:7"
+                  }
+                ],
+                "id": 5085,
+                "name": "ParameterList",
+                "src": "712:137:7"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 5092,
+                "name": "ParameterList",
+                "src": "942:0:7"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "argumentTypes": null,
+                      "overloadedDeclarations": [
+                        null
+                      ],
+                      "referencedDeclaration": 4817,
+                      "type": "type(contract AppealableArbitrator)",
+                      "value": "AppealableArbitrator"
+                    },
+                    "id": 5086,
+                    "name": "Identifier",
+                    "src": "857:20:7"
+                  },
+                  {
+                    "attributes": {
+                      "argumentTypes": null,
+                      "overloadedDeclarations": [
+                        null
+                      ],
+                      "referencedDeclaration": 5078,
+                      "type": "uint256",
+                      "value": "_arbitrationPrice"
+                    },
+                    "id": 5087,
+                    "name": "Identifier",
+                    "src": "878:17:7"
+                  },
+                  {
+                    "attributes": {
+                      "argumentTypes": null,
+                      "overloadedDeclarations": [
+                        null
+                      ],
+                      "referencedDeclaration": 5080,
+                      "type": "contract IArbitrator",
+                      "value": "_arbitrator"
+                    },
+                    "id": 5088,
+                    "name": "Identifier",
+                    "src": "897:11:7"
+                  },
+                  {
+                    "attributes": {
+                      "argumentTypes": null,
+                      "overloadedDeclarations": [
+                        null
+                      ],
+                      "referencedDeclaration": 5082,
+                      "type": "bytes memory",
+                      "value": "_arbitratorExtraData"
+                    },
+                    "id": 5089,
+                    "name": "Identifier",
+                    "src": "910:20:7"
+                  },
+                  {
+                    "attributes": {
+                      "argumentTypes": null,
+                      "overloadedDeclarations": [
+                        null
+                      ],
+                      "referencedDeclaration": 5084,
+                      "type": "uint256",
+                      "value": "_timeOut"
+                    },
+                    "id": 5090,
+                    "name": "Identifier",
+                    "src": "932:8:7"
+                  }
+                ],
+                "id": 5091,
+                "name": "ModifierInvocation",
+                "src": "857:84:7"
+              },
+              {
+                "attributes": {
+                  "statements": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 5093,
+                "name": "Block",
+                "src": "942:2:7"
+              }
+            ],
+            "id": 5094,
+            "name": "FunctionDefinition",
+            "src": "701:243:7"
+          },
+          {
+            "attributes": {
+              "documentation": "@dev Compute the start and end of the dispute's current or next appeal period, if possible.\n @param _disputeID ID of the dispute.\n @return The start and end of the period.",
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "appealPeriod",
+              "scope": 5152,
+              "stateMutability": "view",
+              "superFunction": 5237,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_disputeID",
+                      "scope": 5151,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
+                        },
+                        "id": 5095,
+                        "name": "ElementaryTypeName",
+                        "src": "1238:4:7"
+                      }
+                    ],
+                    "id": 5096,
+                    "name": "VariableDeclaration",
+                    "src": "1238:15:7"
+                  }
+                ],
+                "id": 5097,
+                "name": "ParameterList",
+                "src": "1237:17:7"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "start",
+                      "scope": 5151,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
+                        },
+                        "id": 5098,
+                        "name": "ElementaryTypeName",
+                        "src": "1275:4:7"
+                      }
+                    ],
+                    "id": 5099,
+                    "name": "VariableDeclaration",
+                    "src": "1275:10:7"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "end",
+                      "scope": 5151,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
+                        },
+                        "id": 5100,
+                        "name": "ElementaryTypeName",
+                        "src": "1287:4:7"
+                      }
+                    ],
+                    "id": 5101,
+                    "name": "VariableDeclaration",
+                    "src": "1287:8:7"
+                  }
+                ],
+                "id": 5102,
+                "name": "ParameterList",
+                "src": "1274:22:7"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "commonType": {
+                            "typeIdentifier": "t_contract$_IArbitrator_$5252",
+                            "typeString": "contract IArbitrator"
+                          },
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "!=",
+                          "type": "bool"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "arbitrator",
+                              "referencedDeclaration": 4299,
+                              "type": "contract IArbitrator"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": true,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "type": "struct AppealableArbitrator.AppealDispute storage ref"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 4341,
+                                      "type": "mapping(uint256 => struct AppealableArbitrator.AppealDispute storage ref)",
+                                      "value": "appealDisputes"
+                                    },
+                                    "id": 5103,
+                                    "name": "Identifier",
+                                    "src": "1311:14:7"
+                                  },
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 5096,
+                                      "type": "uint256",
+                                      "value": "_disputeID"
+                                    },
+                                    "id": 5104,
+                                    "name": "Identifier",
+                                    "src": "1326:10:7"
+                                  }
+                                ],
+                                "id": 5105,
+                                "name": "IndexAccess",
+                                "src": "1311:26:7"
+                              }
+                            ],
+                            "id": 5106,
+                            "name": "MemberAccess",
+                            "src": "1311:37:7"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "isStructConstructorCall": false,
+                              "lValueRequested": false,
+                              "names": [
+                                null
+                              ],
+                              "type": "contract IArbitrator",
+                              "type_conversion": true
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": [
+                                    {
+                                      "typeIdentifier": "t_address_payable",
+                                      "typeString": "address payable"
+                                    }
+                                  ],
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 5252,
+                                  "type": "type(contract IArbitrator)",
+                                  "value": "IArbitrator"
+                                },
+                                "id": 5107,
+                                "name": "Identifier",
+                                "src": "1352:11:7"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": true,
+                                  "isStructConstructorCall": false,
+                                  "lValueRequested": false,
+                                  "names": [
+                                    null
+                                  ],
+                                  "type": "address payable",
+                                  "type_conversion": true
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": [
+                                        {
+                                          "typeIdentifier": "t_rational_0_by_1",
+                                          "typeString": "int_const 0"
+                                        }
+                                      ],
+                                      "isConstant": false,
+                                      "isLValue": false,
+                                      "isPure": true,
+                                      "lValueRequested": false,
+                                      "type": "type(address)",
+                                      "value": "address"
+                                    },
+                                    "id": 5108,
+                                    "name": "ElementaryTypeNameExpression",
+                                    "src": "1364:7:7"
+                                  },
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "hexvalue": "30",
+                                      "isConstant": false,
+                                      "isLValue": false,
+                                      "isPure": true,
+                                      "lValueRequested": false,
+                                      "subdenomination": null,
+                                      "token": "number",
+                                      "type": "int_const 0",
+                                      "value": "0"
+                                    },
+                                    "id": 5109,
+                                    "name": "Literal",
+                                    "src": "1372:1:7"
+                                  }
+                                ],
+                                "id": 5110,
+                                "name": "FunctionCall",
+                                "src": "1364:10:7"
+                              }
+                            ],
+                            "id": 5111,
+                            "name": "FunctionCall",
+                            "src": "1352:23:7"
+                          }
+                        ],
+                        "id": 5112,
+                        "name": "BinaryOperation",
+                        "src": "1311:64:7"
+                      },
+                      {
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "operator": "=",
+                              "type": "tuple()"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isInlineArray": false,
+                                  "isLValue": true,
+                                  "isPure": false,
+                                  "lValueRequested": true,
+                                  "type": "tuple(uint256,uint256)"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 5099,
+                                      "type": "uint256",
+                                      "value": "start"
+                                    },
+                                    "id": 5113,
+                                    "name": "Identifier",
+                                    "src": "1390:5:7"
+                                  },
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 5101,
+                                      "type": "uint256",
+                                      "value": "end"
+                                    },
+                                    "id": 5114,
+                                    "name": "Identifier",
+                                    "src": "1397:3:7"
+                                  }
+                                ],
+                                "id": 5115,
+                                "name": "TupleExpression",
+                                "src": "1389:12:7"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "isStructConstructorCall": false,
+                                  "lValueRequested": false,
+                                  "names": [
+                                    null
+                                  ],
+                                  "type": "tuple(uint256,uint256)",
+                                  "type_conversion": false
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": [
+                                        {
+                                          "typeIdentifier": "t_uint256",
+                                          "typeString": "uint256"
+                                        }
+                                      ],
+                                      "isConstant": false,
+                                      "isLValue": false,
+                                      "isPure": false,
+                                      "lValueRequested": false,
+                                      "member_name": "appealPeriod",
+                                      "referencedDeclaration": 5237,
+                                      "type": "function (uint256) view external returns (uint256,uint256)"
+                                    },
+                                    "children": [
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": null,
+                                          "isConstant": false,
+                                          "isLValue": true,
+                                          "isPure": false,
+                                          "lValueRequested": false,
+                                          "member_name": "arbitrator",
+                                          "referencedDeclaration": 4299,
+                                          "type": "contract IArbitrator"
+                                        },
+                                        "children": [
+                                          {
+                                            "attributes": {
+                                              "argumentTypes": null,
+                                              "isConstant": false,
+                                              "isLValue": true,
+                                              "isPure": false,
+                                              "lValueRequested": false,
+                                              "type": "struct AppealableArbitrator.AppealDispute storage ref"
+                                            },
+                                            "children": [
+                                              {
+                                                "attributes": {
+                                                  "argumentTypes": null,
+                                                  "overloadedDeclarations": [
+                                                    null
+                                                  ],
+                                                  "referencedDeclaration": 4341,
+                                                  "type": "mapping(uint256 => struct AppealableArbitrator.AppealDispute storage ref)",
+                                                  "value": "appealDisputes"
+                                                },
+                                                "id": 5116,
+                                                "name": "Identifier",
+                                                "src": "1404:14:7"
+                                              },
+                                              {
+                                                "attributes": {
+                                                  "argumentTypes": null,
+                                                  "overloadedDeclarations": [
+                                                    null
+                                                  ],
+                                                  "referencedDeclaration": 5096,
+                                                  "type": "uint256",
+                                                  "value": "_disputeID"
+                                                },
+                                                "id": 5117,
+                                                "name": "Identifier",
+                                                "src": "1419:10:7"
+                                              }
+                                            ],
+                                            "id": 5118,
+                                            "name": "IndexAccess",
+                                            "src": "1404:26:7"
+                                          }
+                                        ],
+                                        "id": 5119,
+                                        "name": "MemberAccess",
+                                        "src": "1404:37:7"
+                                      }
+                                    ],
+                                    "id": 5120,
+                                    "name": "MemberAccess",
+                                    "src": "1404:50:7"
+                                  },
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "isConstant": false,
+                                      "isLValue": true,
+                                      "isPure": false,
+                                      "lValueRequested": false,
+                                      "member_name": "appealDisputeID",
+                                      "referencedDeclaration": 4301,
+                                      "type": "uint256"
+                                    },
+                                    "children": [
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": null,
+                                          "isConstant": false,
+                                          "isLValue": true,
+                                          "isPure": false,
+                                          "lValueRequested": false,
+                                          "type": "struct AppealableArbitrator.AppealDispute storage ref"
+                                        },
+                                        "children": [
+                                          {
+                                            "attributes": {
+                                              "argumentTypes": null,
+                                              "overloadedDeclarations": [
+                                                null
+                                              ],
+                                              "referencedDeclaration": 4341,
+                                              "type": "mapping(uint256 => struct AppealableArbitrator.AppealDispute storage ref)",
+                                              "value": "appealDisputes"
+                                            },
+                                            "id": 5121,
+                                            "name": "Identifier",
+                                            "src": "1455:14:7"
+                                          },
+                                          {
+                                            "attributes": {
+                                              "argumentTypes": null,
+                                              "overloadedDeclarations": [
+                                                null
+                                              ],
+                                              "referencedDeclaration": 5096,
+                                              "type": "uint256",
+                                              "value": "_disputeID"
+                                            },
+                                            "id": 5122,
+                                            "name": "Identifier",
+                                            "src": "1470:10:7"
+                                          }
+                                        ],
+                                        "id": 5123,
+                                        "name": "IndexAccess",
+                                        "src": "1455:26:7"
+                                      }
+                                    ],
+                                    "id": 5124,
+                                    "name": "MemberAccess",
+                                    "src": "1455:42:7"
+                                  }
+                                ],
+                                "id": 5125,
+                                "name": "FunctionCall",
+                                "src": "1404:94:7"
+                              }
+                            ],
+                            "id": 5126,
+                            "name": "Assignment",
+                            "src": "1389:109:7"
+                          }
+                        ],
+                        "id": 5127,
+                        "name": "ExpressionStatement",
+                        "src": "1389:109:7"
+                      },
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "operator": "=",
+                                  "type": "uint256"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 5099,
+                                      "type": "uint256",
+                                      "value": "start"
+                                    },
+                                    "id": 5128,
+                                    "name": "Identifier",
+                                    "src": "1527:5:7"
+                                  },
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "isConstant": false,
+                                      "isLValue": true,
+                                      "isPure": false,
+                                      "lValueRequested": false,
+                                      "member_name": "rulingTime",
+                                      "referencedDeclaration": 4297,
+                                      "type": "uint256"
+                                    },
+                                    "children": [
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": null,
+                                          "isConstant": false,
+                                          "isLValue": true,
+                                          "isPure": false,
+                                          "lValueRequested": false,
+                                          "type": "struct AppealableArbitrator.AppealDispute storage ref"
+                                        },
+                                        "children": [
+                                          {
+                                            "attributes": {
+                                              "argumentTypes": null,
+                                              "overloadedDeclarations": [
+                                                null
+                                              ],
+                                              "referencedDeclaration": 4341,
+                                              "type": "mapping(uint256 => struct AppealableArbitrator.AppealDispute storage ref)",
+                                              "value": "appealDisputes"
+                                            },
+                                            "id": 5129,
+                                            "name": "Identifier",
+                                            "src": "1535:14:7"
+                                          },
+                                          {
+                                            "attributes": {
+                                              "argumentTypes": null,
+                                              "overloadedDeclarations": [
+                                                null
+                                              ],
+                                              "referencedDeclaration": 5096,
+                                              "type": "uint256",
+                                              "value": "_disputeID"
+                                            },
+                                            "id": 5130,
+                                            "name": "Identifier",
+                                            "src": "1550:10:7"
+                                          }
+                                        ],
+                                        "id": 5131,
+                                        "name": "IndexAccess",
+                                        "src": "1535:26:7"
+                                      }
+                                    ],
+                                    "id": 5132,
+                                    "name": "MemberAccess",
+                                    "src": "1535:37:7"
+                                  }
+                                ],
+                                "id": 5133,
+                                "name": "Assignment",
+                                "src": "1527:45:7"
+                              }
+                            ],
+                            "id": 5134,
+                            "name": "ExpressionStatement",
+                            "src": "1527:45:7"
+                          },
+                          {
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "isStructConstructorCall": false,
+                                  "lValueRequested": false,
+                                  "names": [
+                                    null
+                                  ],
+                                  "type": "tuple()",
+                                  "type_conversion": false
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": [
+                                        {
+                                          "typeIdentifier": "t_bool",
+                                          "typeString": "bool"
+                                        },
+                                        {
+                                          "typeIdentifier": "t_stringliteral_19a1fcb6db8f343cf29979267ea866ad2f81c74dae87f9ac855ca3f42fe764be",
+                                          "typeString": "literal_string \"The specified dispute is not appealable.\""
+                                        }
+                                      ],
+                                      "overloadedDeclarations": [
+                                        5300,
+                                        5301
+                                      ],
+                                      "referencedDeclaration": 5301,
+                                      "type": "function (bool,string memory) pure",
+                                      "value": "require"
+                                    },
+                                    "id": 5135,
+                                    "name": "Identifier",
+                                    "src": "1586:7:7"
+                                  },
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "commonType": {
+                                        "typeIdentifier": "t_uint256",
+                                        "typeString": "uint256"
+                                      },
+                                      "isConstant": false,
+                                      "isLValue": false,
+                                      "isPure": false,
+                                      "lValueRequested": false,
+                                      "operator": "!=",
+                                      "type": "bool"
+                                    },
+                                    "children": [
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": null,
+                                          "overloadedDeclarations": [
+                                            null
+                                          ],
+                                          "referencedDeclaration": 5099,
+                                          "type": "uint256",
+                                          "value": "start"
+                                        },
+                                        "id": 5136,
+                                        "name": "Identifier",
+                                        "src": "1594:5:7"
+                                      },
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": null,
+                                          "hexvalue": "30",
+                                          "isConstant": false,
+                                          "isLValue": false,
+                                          "isPure": true,
+                                          "lValueRequested": false,
+                                          "subdenomination": null,
+                                          "token": "number",
+                                          "type": "int_const 0",
+                                          "value": "0"
+                                        },
+                                        "id": 5137,
+                                        "name": "Literal",
+                                        "src": "1603:1:7"
+                                      }
+                                    ],
+                                    "id": 5138,
+                                    "name": "BinaryOperation",
+                                    "src": "1594:10:7"
+                                  },
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "hexvalue": "546865207370656369666965642064697370757465206973206e6f742061707065616c61626c652e",
+                                      "isConstant": false,
+                                      "isLValue": false,
+                                      "isPure": true,
+                                      "lValueRequested": false,
+                                      "subdenomination": null,
+                                      "token": "string",
+                                      "type": "literal_string \"The specified dispute is not appealable.\"",
+                                      "value": "The specified dispute is not appealable."
+                                    },
+                                    "id": 5139,
+                                    "name": "Literal",
+                                    "src": "1606:42:7"
+                                  }
+                                ],
+                                "id": 5140,
+                                "name": "FunctionCall",
+                                "src": "1586:63:7"
+                              }
+                            ],
+                            "id": 5141,
+                            "name": "ExpressionStatement",
+                            "src": "1586:63:7"
+                          },
+                          {
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "operator": "=",
+                                  "type": "uint256"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 5101,
+                                      "type": "uint256",
+                                      "value": "end"
+                                    },
+                                    "id": 5142,
+                                    "name": "Identifier",
+                                    "src": "1663:3:7"
+                                  },
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "commonType": {
+                                        "typeIdentifier": "t_uint256",
+                                        "typeString": "uint256"
+                                      },
+                                      "isConstant": false,
+                                      "isLValue": false,
+                                      "isPure": false,
+                                      "lValueRequested": false,
+                                      "operator": "+",
+                                      "type": "uint256"
+                                    },
+                                    "children": [
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": null,
+                                          "overloadedDeclarations": [
+                                            null
+                                          ],
+                                          "referencedDeclaration": 5099,
+                                          "type": "uint256",
+                                          "value": "start"
+                                        },
+                                        "id": 5143,
+                                        "name": "Identifier",
+                                        "src": "1669:5:7"
+                                      },
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": null,
+                                          "overloadedDeclarations": [
+                                            null
+                                          ],
+                                          "referencedDeclaration": 4337,
+                                          "type": "uint256",
+                                          "value": "timeOut"
+                                        },
+                                        "id": 5144,
+                                        "name": "Identifier",
+                                        "src": "1677:7:7"
+                                      }
+                                    ],
+                                    "id": 5145,
+                                    "name": "BinaryOperation",
+                                    "src": "1669:15:7"
+                                  }
+                                ],
+                                "id": 5146,
+                                "name": "Assignment",
+                                "src": "1663:21:7"
+                              }
+                            ],
+                            "id": 5147,
+                            "name": "ExpressionStatement",
+                            "src": "1663:21:7"
+                          }
+                        ],
+                        "id": 5148,
+                        "name": "Block",
+                        "src": "1513:182:7"
+                      }
+                    ],
+                    "id": 5149,
+                    "name": "IfStatement",
+                    "src": "1307:388:7"
+                  }
+                ],
+                "id": 5150,
+                "name": "Block",
+                "src": "1297:404:7"
+              }
+            ],
+            "id": 5151,
+            "name": "FunctionDefinition",
+            "src": "1216:485:7"
+          }
+        ],
+        "id": 5152,
+        "name": "ContractDefinition",
+        "src": "246:1457:7"
+      }
+    ],
+    "id": 5153,
+    "name": "SourceUnit",
+    "src": "0:1703:7"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.17+commit.d19bba13.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.3.3",
+  "updatedAt": "2021-05-18T04:18:35.533Z",
+  "devdoc": {
+    "author": "Enrique Piqueras - <epiquerass@gmail.com>",
+    "details": "Implementation of `AppealableArbitrator` that supports `appealPeriod`.",
+    "methods": {
+      "appeal(uint256,bytes)": {
+        "details": "Appeals a ruling.",
+        "params": {
+          "_disputeID": "The ID of the dispute.",
+          "_extraData": "Additional info about the appeal."
+        }
+      },
+      "appealCost(uint256,bytes)": {
+        "details": "Gets the cost of appeal for the specified dispute.",
+        "params": {
+          "_disputeID": "The ID of the dispute.",
+          "_extraData": "Additional info about the appeal."
+        },
+        "return": "The cost of the appeal."
+      },
+      "appealPeriod(uint256)": {
+        "details": "Compute the start and end of the dispute's current or next appeal period, if possible.",
+        "params": {
+          "_disputeID": "ID of the dispute."
+        },
+        "return": "The start and end of the period."
+      },
+      "arbitrationCost(bytes)": {
+        "details": "Cost of arbitration. Accessor to arbitrationPrice.",
+        "params": {
+          "_extraData": "Not used by this contract."
+        },
+        "return": "fee Amount to be paid."
+      },
+      "changeArbitrator(address)": {
+        "details": "Changes the back up arbitrator.",
+        "params": {
+          "_arbitrator": "The new back up arbitrator."
+        }
+      },
+      "changeTimeOut(uint256)": {
+        "details": "Changes the time out.",
+        "params": {
+          "_timeOut": "The new time out."
+        }
+      },
+      "constructor": {
+        "details": "Constructs the `EnhancedAppealableArbitrator` contract.",
+        "params": {
+          "_arbitrationPrice": "The amount to be paid for arbitration.",
+          "_arbitrator": "The back up arbitrator.",
+          "_arbitratorExtraData": "Not used by this contract.",
+          "_timeOut": "The time out for the appeal period."
+        }
+      },
+      "createDispute(uint256,bytes)": {
+        "details": "Create a dispute. Must be called by the arbitrable contract. Must be paid at least arbitrationCost().",
+        "params": {
+          "_choices": "Amount of choices the arbitrator can make in this dispute. When ruling ruling<=choices.",
+          "_extraData": "Can be used to give additional info on the dispute to be created."
+        },
+        "return": "disputeID ID of the dispute created."
+      },
+      "currentRuling(uint256)": {
+        "details": "Return the ruling of a dispute.",
+        "params": {
+          "_disputeID": "ID of the dispute to rule."
+        },
+        "return": "ruling The ruling which would or has been given."
+      },
+      "disputeStatus(uint256)": {
+        "details": "Gets the status of the specified dispute.",
+        "params": {
+          "_disputeID": "The ID of the dispute."
+        },
+        "return": "The status."
+      },
+      "getAppealDisputeID(uint256)": {
+        "details": "Gets the specified dispute's latest appeal ID.",
+        "params": {
+          "_disputeID": "The ID of the dispute."
+        }
+      },
+      "giveRuling(uint256,uint256)": {
+        "details": "Gives a ruling.",
+        "params": {
+          "_disputeID": "The ID of the dispute.",
+          "_ruling": "The ruling."
+        }
+      },
+      "rule(uint256,uint256)": {
+        "details": "Give a ruling for a dispute. Must be called by the arbitrator. The purpose of this function is to ensure that the address calling it has the right to rule on the contract.",
+        "params": {
+          "_disputeID": "ID of the dispute in the IArbitrator contract.",
+          "_ruling": "Ruling given by the arbitrator. Note that 0 is reserved for \"Not able/wanting to make a decision\"."
+        }
+      },
+      "setArbitrationPrice(uint256)": {
+        "details": "Set the arbitration price. Only callable by the owner.",
+        "params": {
+          "_arbitrationPrice": "Amount to be paid for arbitration."
+        }
+      }
+    },
+    "title": "EnhancedAppealableArbitrator"
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}

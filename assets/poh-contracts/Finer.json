@@ -1,0 +1,2260 @@
+{
+  "contractName": "Finer",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "contract IArbitrator",
+          "name": "_arbitrator",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "_challenger",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "_voucher",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "_disputeID",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "_value",
+          "type": "uint256"
+        }
+      ],
+      "name": "FinePaid",
+      "type": "event"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "CHALLENGER_WON",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "arbitrator",
+      "outputs": [
+        {
+          "internalType": "contract IArbitrator",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "address payable",
+          "name": "_challenger",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_disputeID",
+          "type": "uint256"
+        }
+      ],
+      "name": "payFine",
+      "outputs": [],
+      "payable": true,
+      "stateMutability": "payable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.5.17+commit.d19bba13\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"contract IArbitrator\",\"name\":\"_arbitrator\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"_challenger\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"_voucher\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"_disputeID\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"_value\",\"type\":\"uint256\"}],\"name\":\"FinePaid\",\"type\":\"event\"},{\"constant\":true,\"inputs\":[],\"name\":\"CHALLENGER_WON\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"arbitrator\",\"outputs\":[{\"internalType\":\"contract IArbitrator\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address payable\",\"name\":\"_challenger\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"_disputeID\",\"type\":\"uint256\"}],\"name\":\"payFine\",\"outputs\":[],\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{\"payFine(address,uint256)\":{\"details\":\"Pays the fine and sends it to a particular address. Emits an event.\",\"params\":{\"_challenger\":\"The address to pay the fine to.\",\"_disputeID\":\"ID of the dispute in the arbitrator contract that the challenger won.\"}}},\"title\":\"Finer The contract that allows to pay the fines for vouching for bad submissions in the ProofOfHumanity smart contract. The fines should be paid to the challenger that exposed the bad submission of a particular request. Note that the paid addresses and related amounts are not stored because the fine is not tied to the blockchain addresses but to the actual people. The fact of funding as well as the required amount will be established and recorded off-chain.\"},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/C/Projects/TWITTER/cloned/Proof-Of-Humanity/contracts/Finer.sol\":\"Finer\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/C/Projects/TWITTER/cloned/Proof-Of-Humanity/contracts/Finer.sol\":{\"keccak256\":\"0x6b8c9bcfd5f1ea8ca7288be1621543038fc1d2fb127051543ae65477f9339742\",\"urls\":[\"bzz-raw://741188a413e4a2f5d2d4a8b14517bf9e2bcf2482eb1195d3983cfd09a42a2c3b\",\"dweb:/ipfs/QmRbtn951n8dcZjgRH1kLqTPEPrGjnQBGHLSCG32dSoCDJ\"]},\"@kleros/erc-792/contracts/IArbitrable.sol\":{\"keccak256\":\"0x68e90a06a982dfa968f3aa76ac519126b090707a07e6e984a69ccbc06b6c7cc0\",\"urls\":[\"bzz-raw://ce1d8253efda5757740ee16481ebb82374a85e8eef393c87f6c0a6f2b388db6f\",\"dweb:/ipfs/QmUiQ1EHxVJmwCzqKzjwLAQrAFfQTxKnXHHv6vB75DjP22\"]},\"@kleros/erc-792/contracts/IArbitrator.sol\":{\"keccak256\":\"0x98e3799e61a5e1cc8c01426a56927ec23a8ff8f807751d5c5cc111da683b3f50\",\"urls\":[\"bzz-raw://9c4609c434bdc39620d619093b5610215b3978caf2e70ae3a81eaf19468bfc6b\",\"dweb:/ipfs/QmNj3uku7FrFNzgRS3XfadyVAG6HzLvSTsTnEvUJB6poR3\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b506040516103763803806103768339818101604052602081101561003357600080fd5b5051600080546001600160a01b039092166001600160a01b0319909216919091179055610311806100656000396000f3fe6080604052600436106100345760003560e01c80633d96d0191461003957806356e18f51146100605780636cc6cde11461008e575b600080fd5b34801561004557600080fd5b5061004e6100bf565b60408051918252519081900360200190f35b61008c6004803603604081101561007657600080fd5b506001600160a01b0381351690602001356100c4565b005b34801561009a57600080fd5b506100a36102cd565b604080516001600160a01b039092168252519081900360200190f35b600281565b6000546040805163021e2d3d60e31b81526004810184905290516002926001600160a01b0316916310f169e8916024808301926020929190829003018186803b15801561011057600080fd5b505afa158015610124573d6000803e3d6000fd5b505050506040513d602081101561013a57600080fd5b5051600281111561014757fe5b14610199576040805162461bcd60e51b815260206004820152601760248201527f44697370757465206973206e6f74206f76657220796574000000000000000000604482015290519081900360640190fd5b60005460408051631c3db16d60e01b81526004810184905290516002926001600160a01b031691631c3db16d916024808301926020929190829003018186803b1580156101e557600080fd5b505afa1580156101f9573d6000803e3d6000fd5b505050506040513d602081101561020f57600080fd5b505114610263576040805162461bcd60e51b815260206004820152601860248201527f4e6f2066696e6520666f72207468697320646973707574650000000000000000604482015290519081900360640190fd5b6040516001600160a01b038316903480156108fc02916000818181858888f150506040805134815290518594503393506001600160a01b03871692507f13d76cd377bb81680d4d06399ab565ea89e0c3962fb16e9e177bc89e97f31b939181900360200190a45050565b6000546001600160a01b03168156fea265627a7a72315820b225cc8d10dd8c3af78cfe5424a4a8454226b057c37649342cfcf6cea5d06a8d64736f6c63430005110032",
+  "deployedBytecode": "0x6080604052600436106100345760003560e01c80633d96d0191461003957806356e18f51146100605780636cc6cde11461008e575b600080fd5b34801561004557600080fd5b5061004e6100bf565b60408051918252519081900360200190f35b61008c6004803603604081101561007657600080fd5b506001600160a01b0381351690602001356100c4565b005b34801561009a57600080fd5b506100a36102cd565b604080516001600160a01b039092168252519081900360200190f35b600281565b6000546040805163021e2d3d60e31b81526004810184905290516002926001600160a01b0316916310f169e8916024808301926020929190829003018186803b15801561011057600080fd5b505afa158015610124573d6000803e3d6000fd5b505050506040513d602081101561013a57600080fd5b5051600281111561014757fe5b14610199576040805162461bcd60e51b815260206004820152601760248201527f44697370757465206973206e6f74206f76657220796574000000000000000000604482015290519081900360640190fd5b60005460408051631c3db16d60e01b81526004810184905290516002926001600160a01b031691631c3db16d916024808301926020929190829003018186803b1580156101e557600080fd5b505afa1580156101f9573d6000803e3d6000fd5b505050506040513d602081101561020f57600080fd5b505114610263576040805162461bcd60e51b815260206004820152601860248201527f4e6f2066696e6520666f72207468697320646973707574650000000000000000604482015290519081900360640190fd5b6040516001600160a01b038316903480156108fc02916000818181858888f150506040805134815290518594503393506001600160a01b03871692507f13d76cd377bb81680d4d06399ab565ea89e0c3962fb16e9e177bc89e97f31b939181900360200190a45050565b6000546001600160a01b03168156fea265627a7a72315820b225cc8d10dd8c3af78cfe5424a4a8454226b057c37649342cfcf6cea5d06a8d64736f6c63430005110032",
+  "sourceMap": "740:1407:0:-;;;1340:85;8:9:-1;5:2;;;30:1;27;20:12;5:2;1340:85:0;;;;;;;;;;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;1340:85:0;1394:10;:24;;-1:-1:-1;;;;;1394:24:0;;;-1:-1:-1;;;;;;1394:24:0;;;;;;;;;740:1407;;;;;;",
+  "deployedSourceMap": "740:1407:0:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;762:39;;8:9:-1;5:2;;;30:1;27;20:12;5:2;762:39:0;;;:::i;:::-;;;;;;;;;;;;;;;;1675:470;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;;;;;;1675:470:0;;;;;;;;:::i;:::-;;807:29;;8:9:-1;5:2;;;30:1;27;20:12;5:2;807:29:0;;;:::i;:::-;;;;-1:-1:-1;;;;;807:29:0;;;;;;;;;;;;;;762:39;800:1;762:39;:::o;1675:470::-;1773:10;;:36;;;-1:-1:-1;;;1773:36:0;;;;;;;;;;1813:32;;-1:-1:-1;;;;;1773:10:0;;:24;;:36;;;;;;;;;;;;;;:10;:36;;;5:2:-1;;;;30:1;27;20:12;5:2;1773:36:0;;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;1773:36:0;;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;1773:36:0;:72;;;;;;;;;1765:108;;;;;-1:-1:-1;;;1765:108:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;1891:10;;:36;;;-1:-1:-1;;;1891:36:0;;;;;;;;;;800:1;;-1:-1:-1;;;;;1891:10:0;;:24;;:36;;;;;;;;;;;;;;:10;:36;;;5:2:-1;;;;30:1;27;20:12;5:2;1891:36:0;;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;1891:36:0;;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;1891:36:0;:54;1883:91;;;;;-1:-1:-1;;;1883:91:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;1984:27;;-1:-1:-1;;;;;1984:16:0;;;2001:9;1984:27;;;;;;;;;2001:9;1984:16;:27;;-1:-1:-1;;2082:56:0;;;2128:9;2082:56;;;;2116:10;;-1:-1:-1;2104:10:0;;-1:-1:-1;;;;;;2082:56:0;;;-1:-1:-1;2082:56:0;;;;;;;;;1675:470;;:::o;807:29::-;;;-1:-1:-1;;;;;807:29:0;;:::o",
+  "source": "/**\n *  @authors: [@unknownunknown1]\n *  @reviewers: [@mtsalenc*, @nix1g*, @hbarcelos*, @ferittuncer]\n *  @auditors: []\n *  @bounties: []\n *  @deployments: []\n */\n\npragma solidity ^0.5.17;\n\nimport \"@kleros/erc-792/contracts/IArbitrator.sol\";\n\n/**\n *  @title Finer\n *  The contract that allows to pay the fines for vouching for bad submissions in the ProofOfHumanity smart contract.\n *  The fines should be paid to the challenger that exposed the bad submission of a particular request.\n *  Note that the paid addresses and related amounts are not stored because the fine is not tied to the blockchain addresses but to the actual people.\n *  The fact of funding as well as the required amount will be established and recorded off-chain.\n */\ncontract Finer {\n\n    uint public constant CHALLENGER_WON = 2;\n    IArbitrator public arbitrator; // The arbitrator contract.\n\n    /**\n     *  @dev Emitted when a fine is paid.\n     *  @param _challenger The address of the challenger to pay the fines to.\n     *  @param _voucher The address of the penalized voucher that pays the fine.\n     *  @param _disputeID The ID of the related dispute that was ruled in favor of the challenger.\n     *  @param _value The amount paid.\n     */\n    event FinePaid(address indexed _challenger, address indexed _voucher, uint indexed _disputeID, uint _value);\n\n    constructor(IArbitrator _arbitrator) public {\n        arbitrator = _arbitrator;\n    }\n\n    /** @dev Pays the fine and sends it to a particular address. Emits an event.\n     *  @param _challenger The address to pay the fine to.\n     *  @param _disputeID ID of the dispute in the arbitrator contract that the challenger won.\n     */\n    function payFine(address payable _challenger, uint _disputeID) external payable {\n        require(arbitrator.disputeStatus(_disputeID) == IArbitrator.DisputeStatus.Solved, \"Dispute is not over yet\");\n        require(arbitrator.currentRuling(_disputeID) == CHALLENGER_WON, \"No fine for this dispute\");\n        _challenger.send(msg.value); // Deliberate use of 'send' to avoid blocking the call.\n        emit FinePaid(_challenger, msg.sender, _disputeID, msg.value);\n    }\n}\n",
+  "sourcePath": "C:/Projects/TWITTER/cloned/Proof-Of-Humanity/contracts/Finer.sol",
+  "ast": {
+    "absolutePath": "/C/Projects/TWITTER/cloned/Proof-Of-Humanity/contracts/Finer.sol",
+    "exportedSymbols": {
+      "Finer": [
+        74
+      ]
+    },
+    "id": 75,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".17"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "164:24:0"
+      },
+      {
+        "absolutePath": "@kleros/erc-792/contracts/IArbitrator.sol",
+        "file": "@kleros/erc-792/contracts/IArbitrator.sol",
+        "id": 2,
+        "nodeType": "ImportDirective",
+        "scope": 75,
+        "sourceUnit": 5253,
+        "src": "190:51:0",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": " @title Finer\n The contract that allows to pay the fines for vouching for bad submissions in the ProofOfHumanity smart contract.\n The fines should be paid to the challenger that exposed the bad submission of a particular request.\n Note that the paid addresses and related amounts are not stored because the fine is not tied to the blockchain addresses but to the actual people.\n The fact of funding as well as the required amount will be established and recorded off-chain.",
+        "fullyImplemented": true,
+        "id": 74,
+        "linearizedBaseContracts": [
+          74
+        ],
+        "name": "Finer",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": true,
+            "id": 5,
+            "name": "CHALLENGER_WON",
+            "nodeType": "VariableDeclaration",
+            "scope": 74,
+            "src": "762:39:0",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint256",
+              "typeString": "uint256"
+            },
+            "typeName": {
+              "id": 3,
+              "name": "uint",
+              "nodeType": "ElementaryTypeName",
+              "src": "762:4:0",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint256",
+                "typeString": "uint256"
+              }
+            },
+            "value": {
+              "argumentTypes": null,
+              "hexValue": "32",
+              "id": 4,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "number",
+              "lValueRequested": false,
+              "nodeType": "Literal",
+              "src": "800:1:0",
+              "subdenomination": null,
+              "typeDescriptions": {
+                "typeIdentifier": "t_rational_2_by_1",
+                "typeString": "int_const 2"
+              },
+              "value": "2"
+            },
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 7,
+            "name": "arbitrator",
+            "nodeType": "VariableDeclaration",
+            "scope": 74,
+            "src": "807:29:0",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_contract$_IArbitrator_$5252",
+              "typeString": "contract IArbitrator"
+            },
+            "typeName": {
+              "contractScope": null,
+              "id": 6,
+              "name": "IArbitrator",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 5252,
+              "src": "807:11:0",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_IArbitrator_$5252",
+                "typeString": "contract IArbitrator"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "anonymous": false,
+            "documentation": " @dev Emitted when a fine is paid.\n @param _challenger The address of the challenger to pay the fines to.\n @param _voucher The address of the penalized voucher that pays the fine.\n @param _disputeID The ID of the related dispute that was ruled in favor of the challenger.\n @param _value The amount paid.",
+            "id": 17,
+            "name": "FinePaid",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 16,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 9,
+                  "indexed": true,
+                  "name": "_challenger",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 17,
+                  "src": "1241:27:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 8,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1241:7:0",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 11,
+                  "indexed": true,
+                  "name": "_voucher",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 17,
+                  "src": "1270:24:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 10,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1270:7:0",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 13,
+                  "indexed": true,
+                  "name": "_disputeID",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 17,
+                  "src": "1296:23:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 12,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1296:4:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 15,
+                  "indexed": false,
+                  "name": "_value",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 17,
+                  "src": "1321:11:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 14,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1321:4:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1240:93:0"
+            },
+            "src": "1226:108:0"
+          },
+          {
+            "body": {
+              "id": 26,
+              "nodeType": "Block",
+              "src": "1384:41:0",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 24,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 22,
+                      "name": "arbitrator",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 7,
+                      "src": "1394:10:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_contract$_IArbitrator_$5252",
+                        "typeString": "contract IArbitrator"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "id": 23,
+                      "name": "_arbitrator",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 19,
+                      "src": "1407:11:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_contract$_IArbitrator_$5252",
+                        "typeString": "contract IArbitrator"
+                      }
+                    },
+                    "src": "1394:24:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IArbitrator_$5252",
+                      "typeString": "contract IArbitrator"
+                    }
+                  },
+                  "id": 25,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1394:24:0"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 27,
+            "implemented": true,
+            "kind": "constructor",
+            "modifiers": [],
+            "name": "",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 20,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 19,
+                  "name": "_arbitrator",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 27,
+                  "src": "1352:23:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IArbitrator_$5252",
+                    "typeString": "contract IArbitrator"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 18,
+                    "name": "IArbitrator",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 5252,
+                    "src": "1352:11:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IArbitrator_$5252",
+                      "typeString": "contract IArbitrator"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1351:25:0"
+            },
+            "returnParameters": {
+              "id": 21,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1384:0:0"
+            },
+            "scope": 74,
+            "src": "1340:85:0",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 72,
+              "nodeType": "Block",
+              "src": "1755:390:0",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "commonType": {
+                          "typeIdentifier": "t_enum$_DisputeStatus_$5178",
+                          "typeString": "enum IArbitrator.DisputeStatus"
+                        },
+                        "id": 42,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "argumentTypes": null,
+                          "arguments": [
+                            {
+                              "argumentTypes": null,
+                              "id": 37,
+                              "name": "_disputeID",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 31,
+                              "src": "1798:10:0",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_uint256",
+                                "typeString": "uint256"
+                              }
+                            }
+                          ],
+                          "expression": {
+                            "argumentTypes": [
+                              {
+                                "typeIdentifier": "t_uint256",
+                                "typeString": "uint256"
+                              }
+                            ],
+                            "expression": {
+                              "argumentTypes": null,
+                              "id": 35,
+                              "name": "arbitrator",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 7,
+                              "src": "1773:10:0",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_contract$_IArbitrator_$5252",
+                                "typeString": "contract IArbitrator"
+                              }
+                            },
+                            "id": 36,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "memberName": "disputeStatus",
+                            "nodeType": "MemberAccess",
+                            "referencedDeclaration": 5244,
+                            "src": "1773:24:0",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_function_external_view$_t_uint256_$returns$_t_enum$_DisputeStatus_$5178_$",
+                              "typeString": "function (uint256) view external returns (enum IArbitrator.DisputeStatus)"
+                            }
+                          },
+                          "id": 38,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "kind": "functionCall",
+                          "lValueRequested": false,
+                          "names": [],
+                          "nodeType": "FunctionCall",
+                          "src": "1773:36:0",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_enum$_DisputeStatus_$5178",
+                            "typeString": "enum IArbitrator.DisputeStatus"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "==",
+                        "rightExpression": {
+                          "argumentTypes": null,
+                          "expression": {
+                            "argumentTypes": null,
+                            "expression": {
+                              "argumentTypes": null,
+                              "id": 39,
+                              "name": "IArbitrator",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 5252,
+                              "src": "1813:11:0",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_type$_t_contract$_IArbitrator_$5252_$",
+                                "typeString": "type(contract IArbitrator)"
+                              }
+                            },
+                            "id": 40,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "memberName": "DisputeStatus",
+                            "nodeType": "MemberAccess",
+                            "referencedDeclaration": 5178,
+                            "src": "1813:25:0",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_type$_t_enum$_DisputeStatus_$5178_$",
+                              "typeString": "type(enum IArbitrator.DisputeStatus)"
+                            }
+                          },
+                          "id": 41,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "lValueRequested": false,
+                          "memberName": "Solved",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": null,
+                          "src": "1813:32:0",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_enum$_DisputeStatus_$5178",
+                            "typeString": "enum IArbitrator.DisputeStatus"
+                          }
+                        },
+                        "src": "1773:72:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "hexValue": "44697370757465206973206e6f74206f76657220796574",
+                        "id": 43,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "1847:25:0",
+                        "subdenomination": null,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_eabf82344d782b7a59dfb61e483629a5358b966b7ab3f9d3db9ba83a36e08b3c",
+                          "typeString": "literal_string \"Dispute is not over yet\""
+                        },
+                        "value": "Dispute is not over yet"
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_eabf82344d782b7a59dfb61e483629a5358b966b7ab3f9d3db9ba83a36e08b3c",
+                          "typeString": "literal_string \"Dispute is not over yet\""
+                        }
+                      ],
+                      "id": 34,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        5300,
+                        5301
+                      ],
+                      "referencedDeclaration": 5301,
+                      "src": "1765:7:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 44,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1765:108:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 45,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1765:108:0"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "commonType": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        "id": 52,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "argumentTypes": null,
+                          "arguments": [
+                            {
+                              "argumentTypes": null,
+                              "id": 49,
+                              "name": "_disputeID",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 31,
+                              "src": "1916:10:0",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_uint256",
+                                "typeString": "uint256"
+                              }
+                            }
+                          ],
+                          "expression": {
+                            "argumentTypes": [
+                              {
+                                "typeIdentifier": "t_uint256",
+                                "typeString": "uint256"
+                              }
+                            ],
+                            "expression": {
+                              "argumentTypes": null,
+                              "id": 47,
+                              "name": "arbitrator",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 7,
+                              "src": "1891:10:0",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_contract$_IArbitrator_$5252",
+                                "typeString": "contract IArbitrator"
+                              }
+                            },
+                            "id": 48,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "memberName": "currentRuling",
+                            "nodeType": "MemberAccess",
+                            "referencedDeclaration": 5251,
+                            "src": "1891:24:0",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_function_external_view$_t_uint256_$returns$_t_uint256_$",
+                              "typeString": "function (uint256) view external returns (uint256)"
+                            }
+                          },
+                          "id": 50,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "kind": "functionCall",
+                          "lValueRequested": false,
+                          "names": [],
+                          "nodeType": "FunctionCall",
+                          "src": "1891:36:0",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "==",
+                        "rightExpression": {
+                          "argumentTypes": null,
+                          "id": 51,
+                          "name": "CHALLENGER_WON",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 5,
+                          "src": "1931:14:0",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "src": "1891:54:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "hexValue": "4e6f2066696e6520666f7220746869732064697370757465",
+                        "id": 53,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "1947:26:0",
+                        "subdenomination": null,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_da7620cc8acce76475bd42cf2846fecc27c5891b9ea5e7ce44d54147c4db011c",
+                          "typeString": "literal_string \"No fine for this dispute\""
+                        },
+                        "value": "No fine for this dispute"
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_da7620cc8acce76475bd42cf2846fecc27c5891b9ea5e7ce44d54147c4db011c",
+                          "typeString": "literal_string \"No fine for this dispute\""
+                        }
+                      ],
+                      "id": 46,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        5300,
+                        5301
+                      ],
+                      "referencedDeclaration": 5301,
+                      "src": "1883:7:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 54,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1883:91:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 55,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1883:91:0"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 59,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 5297,
+                          "src": "2001:3:0",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 60,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "value",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": null,
+                        "src": "2001:9:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 56,
+                        "name": "_challenger",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 29,
+                        "src": "1984:11:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address_payable",
+                          "typeString": "address payable"
+                        }
+                      },
+                      "id": 58,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "send",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": null,
+                      "src": "1984:16:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_send_nonpayable$_t_uint256_$returns$_t_bool_$",
+                        "typeString": "function (uint256) returns (bool)"
+                      }
+                    },
+                    "id": 61,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1984:27:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "id": 62,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1984:27:0"
+                },
+                {
+                  "eventCall": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 64,
+                        "name": "_challenger",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 29,
+                        "src": "2091:11:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address_payable",
+                          "typeString": "address payable"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 65,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 5297,
+                          "src": "2104:3:0",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 66,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "sender",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": null,
+                        "src": "2104:10:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address_payable",
+                          "typeString": "address payable"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 67,
+                        "name": "_disputeID",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 31,
+                        "src": "2116:10:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 68,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 5297,
+                          "src": "2128:3:0",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 69,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "value",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": null,
+                        "src": "2128:9:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address_payable",
+                          "typeString": "address payable"
+                        },
+                        {
+                          "typeIdentifier": "t_address_payable",
+                          "typeString": "address payable"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "id": 63,
+                      "name": "FinePaid",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 17,
+                      "src": "2082:8:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_address_$_t_address_$_t_uint256_$_t_uint256_$returns$__$",
+                        "typeString": "function (address,address,uint256,uint256)"
+                      }
+                    },
+                    "id": 70,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "2082:56:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 71,
+                  "nodeType": "EmitStatement",
+                  "src": "2077:61:0"
+                }
+              ]
+            },
+            "documentation": "@dev Pays the fine and sends it to a particular address. Emits an event.\n @param _challenger The address to pay the fine to.\n @param _disputeID ID of the dispute in the arbitrator contract that the challenger won.",
+            "id": 73,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "payFine",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 32,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 29,
+                  "name": "_challenger",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 73,
+                  "src": "1692:27:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address_payable",
+                    "typeString": "address payable"
+                  },
+                  "typeName": {
+                    "id": 28,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1692:15:0",
+                    "stateMutability": "payable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address_payable",
+                      "typeString": "address payable"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 31,
+                  "name": "_disputeID",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 73,
+                  "src": "1721:15:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 30,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1721:4:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1691:46:0"
+            },
+            "returnParameters": {
+              "id": 33,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1755:0:0"
+            },
+            "scope": 74,
+            "src": "1675:470:0",
+            "stateMutability": "payable",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 75,
+        "src": "740:1407:0"
+      }
+    ],
+    "src": "164:1984:0"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "/C/Projects/TWITTER/cloned/Proof-Of-Humanity/contracts/Finer.sol",
+      "exportedSymbols": {
+        "Finer": [
+          74
+        ]
+      }
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "^",
+            "0.5",
+            ".17"
+          ]
+        },
+        "id": 1,
+        "name": "PragmaDirective",
+        "src": "164:24:0"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 5253,
+          "absolutePath": "@kleros/erc-792/contracts/IArbitrator.sol",
+          "file": "@kleros/erc-792/contracts/IArbitrator.sol",
+          "scope": 75,
+          "symbolAliases": [
+            null
+          ],
+          "unitAlias": ""
+        },
+        "id": 2,
+        "name": "ImportDirective",
+        "src": "190:51:0"
+      },
+      {
+        "attributes": {
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "contract",
+          "documentation": " @title Finer\n The contract that allows to pay the fines for vouching for bad submissions in the ProofOfHumanity smart contract.\n The fines should be paid to the challenger that exposed the bad submission of a particular request.\n Note that the paid addresses and related amounts are not stored because the fine is not tied to the blockchain addresses but to the actual people.\n The fact of funding as well as the required amount will be established and recorded off-chain.",
+          "fullyImplemented": true,
+          "linearizedBaseContracts": [
+            74
+          ],
+          "name": "Finer",
+          "scope": 75
+        },
+        "children": [
+          {
+            "attributes": {
+              "constant": true,
+              "name": "CHALLENGER_WON",
+              "scope": 74,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "uint256",
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "name": "uint",
+                  "type": "uint256"
+                },
+                "id": 3,
+                "name": "ElementaryTypeName",
+                "src": "762:4:0"
+              },
+              {
+                "attributes": {
+                  "argumentTypes": null,
+                  "hexvalue": "32",
+                  "isConstant": false,
+                  "isLValue": false,
+                  "isPure": true,
+                  "lValueRequested": false,
+                  "subdenomination": null,
+                  "token": "number",
+                  "type": "int_const 2",
+                  "value": "2"
+                },
+                "id": 4,
+                "name": "Literal",
+                "src": "800:1:0"
+              }
+            ],
+            "id": 5,
+            "name": "VariableDeclaration",
+            "src": "762:39:0"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "name": "arbitrator",
+              "scope": 74,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "contract IArbitrator",
+              "value": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "contractScope": null,
+                  "name": "IArbitrator",
+                  "referencedDeclaration": 5252,
+                  "type": "contract IArbitrator"
+                },
+                "id": 6,
+                "name": "UserDefinedTypeName",
+                "src": "807:11:0"
+              }
+            ],
+            "id": 7,
+            "name": "VariableDeclaration",
+            "src": "807:29:0"
+          },
+          {
+            "attributes": {
+              "anonymous": false,
+              "documentation": " @dev Emitted when a fine is paid.\n @param _challenger The address of the challenger to pay the fines to.\n @param _voucher The address of the penalized voucher that pays the fine.\n @param _disputeID The ID of the related dispute that was ruled in favor of the challenger.\n @param _value The amount paid.",
+              "name": "FinePaid"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": true,
+                      "name": "_challenger",
+                      "scope": 17,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 8,
+                        "name": "ElementaryTypeName",
+                        "src": "1241:7:0"
+                      }
+                    ],
+                    "id": 9,
+                    "name": "VariableDeclaration",
+                    "src": "1241:27:0"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": true,
+                      "name": "_voucher",
+                      "scope": 17,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 10,
+                        "name": "ElementaryTypeName",
+                        "src": "1270:7:0"
+                      }
+                    ],
+                    "id": 11,
+                    "name": "VariableDeclaration",
+                    "src": "1270:24:0"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": true,
+                      "name": "_disputeID",
+                      "scope": 17,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
+                        },
+                        "id": 12,
+                        "name": "ElementaryTypeName",
+                        "src": "1296:4:0"
+                      }
+                    ],
+                    "id": 13,
+                    "name": "VariableDeclaration",
+                    "src": "1296:23:0"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "name": "_value",
+                      "scope": 17,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
+                        },
+                        "id": 14,
+                        "name": "ElementaryTypeName",
+                        "src": "1321:4:0"
+                      }
+                    ],
+                    "id": 15,
+                    "name": "VariableDeclaration",
+                    "src": "1321:11:0"
+                  }
+                ],
+                "id": 16,
+                "name": "ParameterList",
+                "src": "1240:93:0"
+              }
+            ],
+            "id": 17,
+            "name": "EventDefinition",
+            "src": "1226:108:0"
+          },
+          {
+            "attributes": {
+              "documentation": null,
+              "implemented": true,
+              "isConstructor": true,
+              "kind": "constructor",
+              "modifiers": [
+                null
+              ],
+              "name": "",
+              "scope": 74,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_arbitrator",
+                      "scope": 27,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "contract IArbitrator",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "contractScope": null,
+                          "name": "IArbitrator",
+                          "referencedDeclaration": 5252,
+                          "type": "contract IArbitrator"
+                        },
+                        "id": 18,
+                        "name": "UserDefinedTypeName",
+                        "src": "1352:11:0"
+                      }
+                    ],
+                    "id": 19,
+                    "name": "VariableDeclaration",
+                    "src": "1352:23:0"
+                  }
+                ],
+                "id": 20,
+                "name": "ParameterList",
+                "src": "1351:25:0"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 21,
+                "name": "ParameterList",
+                "src": "1384:0:0"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "contract IArbitrator"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 7,
+                              "type": "contract IArbitrator",
+                              "value": "arbitrator"
+                            },
+                            "id": 22,
+                            "name": "Identifier",
+                            "src": "1394:10:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 19,
+                              "type": "contract IArbitrator",
+                              "value": "_arbitrator"
+                            },
+                            "id": 23,
+                            "name": "Identifier",
+                            "src": "1407:11:0"
+                          }
+                        ],
+                        "id": 24,
+                        "name": "Assignment",
+                        "src": "1394:24:0"
+                      }
+                    ],
+                    "id": 25,
+                    "name": "ExpressionStatement",
+                    "src": "1394:24:0"
+                  }
+                ],
+                "id": 26,
+                "name": "Block",
+                "src": "1384:41:0"
+              }
+            ],
+            "id": 27,
+            "name": "FunctionDefinition",
+            "src": "1340:85:0"
+          },
+          {
+            "attributes": {
+              "documentation": "@dev Pays the fine and sends it to a particular address. Emits an event.\n @param _challenger The address to pay the fine to.\n @param _disputeID ID of the dispute in the arbitrator contract that the challenger won.",
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "payFine",
+              "scope": 74,
+              "stateMutability": "payable",
+              "superFunction": null,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_challenger",
+                      "scope": 73,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address payable",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "payable",
+                          "type": "address payable"
+                        },
+                        "id": 28,
+                        "name": "ElementaryTypeName",
+                        "src": "1692:15:0"
+                      }
+                    ],
+                    "id": 29,
+                    "name": "VariableDeclaration",
+                    "src": "1692:27:0"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_disputeID",
+                      "scope": 73,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
+                        },
+                        "id": 30,
+                        "name": "ElementaryTypeName",
+                        "src": "1721:4:0"
+                      }
+                    ],
+                    "id": 31,
+                    "name": "VariableDeclaration",
+                    "src": "1721:15:0"
+                  }
+                ],
+                "id": 32,
+                "name": "ParameterList",
+                "src": "1691:46:0"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 33,
+                "name": "ParameterList",
+                "src": "1755:0:0"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "tuple()",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_bool",
+                                  "typeString": "bool"
+                                },
+                                {
+                                  "typeIdentifier": "t_stringliteral_eabf82344d782b7a59dfb61e483629a5358b966b7ab3f9d3db9ba83a36e08b3c",
+                                  "typeString": "literal_string \"Dispute is not over yet\""
+                                }
+                              ],
+                              "overloadedDeclarations": [
+                                5300,
+                                5301
+                              ],
+                              "referencedDeclaration": 5301,
+                              "type": "function (bool,string memory) pure",
+                              "value": "require"
+                            },
+                            "id": 34,
+                            "name": "Identifier",
+                            "src": "1765:7:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "commonType": {
+                                "typeIdentifier": "t_enum$_DisputeStatus_$5178",
+                                "typeString": "enum IArbitrator.DisputeStatus"
+                              },
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "operator": "==",
+                              "type": "bool"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "isStructConstructorCall": false,
+                                  "lValueRequested": false,
+                                  "names": [
+                                    null
+                                  ],
+                                  "type": "enum IArbitrator.DisputeStatus",
+                                  "type_conversion": false
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": [
+                                        {
+                                          "typeIdentifier": "t_uint256",
+                                          "typeString": "uint256"
+                                        }
+                                      ],
+                                      "isConstant": false,
+                                      "isLValue": false,
+                                      "isPure": false,
+                                      "lValueRequested": false,
+                                      "member_name": "disputeStatus",
+                                      "referencedDeclaration": 5244,
+                                      "type": "function (uint256) view external returns (enum IArbitrator.DisputeStatus)"
+                                    },
+                                    "children": [
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": null,
+                                          "overloadedDeclarations": [
+                                            null
+                                          ],
+                                          "referencedDeclaration": 7,
+                                          "type": "contract IArbitrator",
+                                          "value": "arbitrator"
+                                        },
+                                        "id": 35,
+                                        "name": "Identifier",
+                                        "src": "1773:10:0"
+                                      }
+                                    ],
+                                    "id": 36,
+                                    "name": "MemberAccess",
+                                    "src": "1773:24:0"
+                                  },
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 31,
+                                      "type": "uint256",
+                                      "value": "_disputeID"
+                                    },
+                                    "id": 37,
+                                    "name": "Identifier",
+                                    "src": "1798:10:0"
+                                  }
+                                ],
+                                "id": 38,
+                                "name": "FunctionCall",
+                                "src": "1773:36:0"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": true,
+                                  "lValueRequested": false,
+                                  "member_name": "Solved",
+                                  "referencedDeclaration": null,
+                                  "type": "enum IArbitrator.DisputeStatus"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "isConstant": false,
+                                      "isLValue": false,
+                                      "isPure": false,
+                                      "lValueRequested": false,
+                                      "member_name": "DisputeStatus",
+                                      "referencedDeclaration": 5178,
+                                      "type": "type(enum IArbitrator.DisputeStatus)"
+                                    },
+                                    "children": [
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": null,
+                                          "overloadedDeclarations": [
+                                            null
+                                          ],
+                                          "referencedDeclaration": 5252,
+                                          "type": "type(contract IArbitrator)",
+                                          "value": "IArbitrator"
+                                        },
+                                        "id": 39,
+                                        "name": "Identifier",
+                                        "src": "1813:11:0"
+                                      }
+                                    ],
+                                    "id": 40,
+                                    "name": "MemberAccess",
+                                    "src": "1813:25:0"
+                                  }
+                                ],
+                                "id": 41,
+                                "name": "MemberAccess",
+                                "src": "1813:32:0"
+                              }
+                            ],
+                            "id": 42,
+                            "name": "BinaryOperation",
+                            "src": "1773:72:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "hexvalue": "44697370757465206973206e6f74206f76657220796574",
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "lValueRequested": false,
+                              "subdenomination": null,
+                              "token": "string",
+                              "type": "literal_string \"Dispute is not over yet\"",
+                              "value": "Dispute is not over yet"
+                            },
+                            "id": 43,
+                            "name": "Literal",
+                            "src": "1847:25:0"
+                          }
+                        ],
+                        "id": 44,
+                        "name": "FunctionCall",
+                        "src": "1765:108:0"
+                      }
+                    ],
+                    "id": 45,
+                    "name": "ExpressionStatement",
+                    "src": "1765:108:0"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "tuple()",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_bool",
+                                  "typeString": "bool"
+                                },
+                                {
+                                  "typeIdentifier": "t_stringliteral_da7620cc8acce76475bd42cf2846fecc27c5891b9ea5e7ce44d54147c4db011c",
+                                  "typeString": "literal_string \"No fine for this dispute\""
+                                }
+                              ],
+                              "overloadedDeclarations": [
+                                5300,
+                                5301
+                              ],
+                              "referencedDeclaration": 5301,
+                              "type": "function (bool,string memory) pure",
+                              "value": "require"
+                            },
+                            "id": 46,
+                            "name": "Identifier",
+                            "src": "1883:7:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "commonType": {
+                                "typeIdentifier": "t_uint256",
+                                "typeString": "uint256"
+                              },
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "operator": "==",
+                              "type": "bool"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "isStructConstructorCall": false,
+                                  "lValueRequested": false,
+                                  "names": [
+                                    null
+                                  ],
+                                  "type": "uint256",
+                                  "type_conversion": false
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": [
+                                        {
+                                          "typeIdentifier": "t_uint256",
+                                          "typeString": "uint256"
+                                        }
+                                      ],
+                                      "isConstant": false,
+                                      "isLValue": false,
+                                      "isPure": false,
+                                      "lValueRequested": false,
+                                      "member_name": "currentRuling",
+                                      "referencedDeclaration": 5251,
+                                      "type": "function (uint256) view external returns (uint256)"
+                                    },
+                                    "children": [
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": null,
+                                          "overloadedDeclarations": [
+                                            null
+                                          ],
+                                          "referencedDeclaration": 7,
+                                          "type": "contract IArbitrator",
+                                          "value": "arbitrator"
+                                        },
+                                        "id": 47,
+                                        "name": "Identifier",
+                                        "src": "1891:10:0"
+                                      }
+                                    ],
+                                    "id": 48,
+                                    "name": "MemberAccess",
+                                    "src": "1891:24:0"
+                                  },
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 31,
+                                      "type": "uint256",
+                                      "value": "_disputeID"
+                                    },
+                                    "id": 49,
+                                    "name": "Identifier",
+                                    "src": "1916:10:0"
+                                  }
+                                ],
+                                "id": 50,
+                                "name": "FunctionCall",
+                                "src": "1891:36:0"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 5,
+                                  "type": "uint256",
+                                  "value": "CHALLENGER_WON"
+                                },
+                                "id": 51,
+                                "name": "Identifier",
+                                "src": "1931:14:0"
+                              }
+                            ],
+                            "id": 52,
+                            "name": "BinaryOperation",
+                            "src": "1891:54:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "hexvalue": "4e6f2066696e6520666f7220746869732064697370757465",
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "lValueRequested": false,
+                              "subdenomination": null,
+                              "token": "string",
+                              "type": "literal_string \"No fine for this dispute\"",
+                              "value": "No fine for this dispute"
+                            },
+                            "id": 53,
+                            "name": "Literal",
+                            "src": "1947:26:0"
+                          }
+                        ],
+                        "id": 54,
+                        "name": "FunctionCall",
+                        "src": "1883:91:0"
+                      }
+                    ],
+                    "id": 55,
+                    "name": "ExpressionStatement",
+                    "src": "1883:91:0"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "bool",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                }
+                              ],
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "send",
+                              "referencedDeclaration": null,
+                              "type": "function (uint256) returns (bool)"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 29,
+                                  "type": "address payable",
+                                  "value": "_challenger"
+                                },
+                                "id": 56,
+                                "name": "Identifier",
+                                "src": "1984:11:0"
+                              }
+                            ],
+                            "id": 58,
+                            "name": "MemberAccess",
+                            "src": "1984:16:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "value",
+                              "referencedDeclaration": null,
+                              "type": "uint256"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 5297,
+                                  "type": "msg",
+                                  "value": "msg"
+                                },
+                                "id": 59,
+                                "name": "Identifier",
+                                "src": "2001:3:0"
+                              }
+                            ],
+                            "id": 60,
+                            "name": "MemberAccess",
+                            "src": "2001:9:0"
+                          }
+                        ],
+                        "id": 61,
+                        "name": "FunctionCall",
+                        "src": "1984:27:0"
+                      }
+                    ],
+                    "id": 62,
+                    "name": "ExpressionStatement",
+                    "src": "1984:27:0"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "tuple()",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_address_payable",
+                                  "typeString": "address payable"
+                                },
+                                {
+                                  "typeIdentifier": "t_address_payable",
+                                  "typeString": "address payable"
+                                },
+                                {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                },
+                                {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                }
+                              ],
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 17,
+                              "type": "function (address,address,uint256,uint256)",
+                              "value": "FinePaid"
+                            },
+                            "id": 63,
+                            "name": "Identifier",
+                            "src": "2082:8:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 29,
+                              "type": "address payable",
+                              "value": "_challenger"
+                            },
+                            "id": 64,
+                            "name": "Identifier",
+                            "src": "2091:11:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "sender",
+                              "referencedDeclaration": null,
+                              "type": "address payable"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 5297,
+                                  "type": "msg",
+                                  "value": "msg"
+                                },
+                                "id": 65,
+                                "name": "Identifier",
+                                "src": "2104:3:0"
+                              }
+                            ],
+                            "id": 66,
+                            "name": "MemberAccess",
+                            "src": "2104:10:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 31,
+                              "type": "uint256",
+                              "value": "_disputeID"
+                            },
+                            "id": 67,
+                            "name": "Identifier",
+                            "src": "2116:10:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "value",
+                              "referencedDeclaration": null,
+                              "type": "uint256"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 5297,
+                                  "type": "msg",
+                                  "value": "msg"
+                                },
+                                "id": 68,
+                                "name": "Identifier",
+                                "src": "2128:3:0"
+                              }
+                            ],
+                            "id": 69,
+                            "name": "MemberAccess",
+                            "src": "2128:9:0"
+                          }
+                        ],
+                        "id": 70,
+                        "name": "FunctionCall",
+                        "src": "2082:56:0"
+                      }
+                    ],
+                    "id": 71,
+                    "name": "EmitStatement",
+                    "src": "2077:61:0"
+                  }
+                ],
+                "id": 72,
+                "name": "Block",
+                "src": "1755:390:0"
+              }
+            ],
+            "id": 73,
+            "name": "FunctionDefinition",
+            "src": "1675:470:0"
+          }
+        ],
+        "id": 74,
+        "name": "ContractDefinition",
+        "src": "740:1407:0"
+      }
+    ],
+    "id": 75,
+    "name": "SourceUnit",
+    "src": "164:1984:0"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.17+commit.d19bba13.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.3.3",
+  "updatedAt": "2021-05-18T04:18:35.327Z",
+  "devdoc": {
+    "methods": {
+      "payFine(address,uint256)": {
+        "details": "Pays the fine and sends it to a particular address. Emits an event.",
+        "params": {
+          "_challenger": "The address to pay the fine to.",
+          "_disputeID": "ID of the dispute in the arbitrator contract that the challenger won."
+        }
+      }
+    },
+    "title": "Finer The contract that allows to pay the fines for vouching for bad submissions in the ProofOfHumanity smart contract. The fines should be paid to the challenger that exposed the bad submission of a particular request. Note that the paid addresses and related amounts are not stored because the fine is not tied to the blockchain addresses but to the actual people. The fact of funding as well as the required amount will be established and recorded off-chain."
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}
