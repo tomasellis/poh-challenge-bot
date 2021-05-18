@@ -4,7 +4,7 @@
   "description": "A bot that displays PoH registry info.",
   "main": "index.ts",
   "scripts": {
-    "sandbox": "ts-node src/sandbox.ts",
+    "sandbox": "dotenv ts-node src/sandbox.ts",
     "generate": "typechain --target ethers-v5 --out-dir generated/poh-ethers-contracts assets/poh-contracts/*.json"
   },
   "author": "",
@@ -13,13 +13,13 @@
     "@truffle/compile-solidity": "^5.3.2",
     "@typechain/ethers-v5": "^7.0.0",
     "@types/node": "^15.3.0",
+    "dotenv-cli": "^4.0.0",
     "fp-ts": "^2.10.5",
     "solc": "^0.6.0",
     "typechain": "^5.0.0",
     "typescript": "^4.2.4"
   },
   "dependencies": {
-    "dotenv": "^9.0.2",
     "ethers": "^5.1.4",
     "ts-node": "^9.1.1"
   }
