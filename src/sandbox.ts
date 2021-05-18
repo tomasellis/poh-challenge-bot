@@ -1,7 +1,6 @@
 import { config } from "dotenv"
-import { utils, ethers } from "ethers"
+import { ethers } from "ethers"
 import { ProofOfHumanity__factory } from "../generated/poh-ethers-contracts/factories/ProofOfHumanity__factory"
-import { ProofOfHumanity } from "../generated/poh-ethers-contracts/ProofOfHumanity"
 import { appConfig, AppConfig, pohContractAddress } from "../src/config"
 
 async function main(configuration: AppConfig) {
@@ -12,6 +11,10 @@ async function main(configuration: AppConfig) {
   const santiAddress = "0x2a52309edf998799c4a8b89324ccad91848c8676"
   const info = await poh.getSubmissionInfo(santiAddress)
   console.info("Got submission info", info)
+
+  poh.on(poh.filters.AddSubmission(), (_, __, event) => {
+    console.info("Got submission add event", event)
+  })
 
   poh.on(poh.filters.SubmissionChallenged(), (_, __, ___, event) => {
     console.info("Got submission challenge event,", event)
