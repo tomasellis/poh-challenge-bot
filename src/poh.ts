@@ -55,7 +55,7 @@ const infoQuery = (submissionId: string) => `
     query {
         submission(id: "${submissionId}") {
             name
-            requests {
+            requests(orderBy: creationTime, orderDirection: asc) {
               type
               evidence(orderBy:creationTime, orderDirection: asc) {
                 URI
