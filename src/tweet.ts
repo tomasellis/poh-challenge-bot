@@ -21,13 +21,22 @@ export const postTweet = (twitterConfig: TwitterConfig) => async (data: NewChall
 }
 
 
+/**
+ * Makes the string for the tweet status.
+ *
+ * This tweet format allows for a name with 55-ish characters.
+ *
+ * Don't worry about the url lengths,
+ * twitter interprets them with constant length
+ * and will show them shortened if necessary.
+ */
 export const makeStatus = (data: NewChallengeTweetData): string =>
-  `${data.name} has been challenged. ⚖️
+  `⚖️ ${data.name} has been challenged.
 
-"${truncateText(100)(data.reasonGiven)}" 📣
+📣「${truncateText(100)(data.reasonGiven)}」
 
-View the profile: ${data.pohProfileUrl} 👤
-Follow the case: ${data.klerosCaseUrl} 🔍👀`
+👤 View the profile: ${data.pohProfileUrl}
+👀 Follow the case: ${data.klerosCaseUrl}`
 
 
 
