@@ -1,12 +1,13 @@
 import { ethers } from "ethers"
 import { ProofOfHumanity__factory } from "../generated/poh-ethers-contracts/factories/ProofOfHumanity__factory"
-import { appConfig, AppConfig, pohContractAddress } from "../src/config"
+import { AppConfig } from "../src/config"
+import * as config from "../src/config"
 
 async function main(configuration: AppConfig) {
   console.info("Starting with configuration:", configuration)
 
-  const provider = new ethers.providers.JsonRpcProvider(configuration.infuraURL)
-  const poh = ProofOfHumanity__factory.connect(pohContractAddress, provider)
+  const provider = new ethers.providers.JsonRpcProvider(configuration.infuraConfig.url)
+  const poh = ProofOfHumanity__factory.connect(config.pohContractAddress, provider)
 
   const santiAddress = "0x2a52309edf998799c4a8b89324ccad91848c8676"
   const info = await poh.getSubmissionInfo(santiAddress)
@@ -21,6 +22,6 @@ async function main(configuration: AppConfig) {
   })
 }
 
-main(appConfig)
-  .then(_ => console.log("Done"))
+config.appConfigFromEnvironment()
+  .then(main)
   .catch(console.error)
