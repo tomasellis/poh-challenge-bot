@@ -18,6 +18,25 @@ type Evidence = {
   description: string
 }
 
+const infoQuery = (submissionId: string) => `
+    query {
+        submission(id: "${submissionId}") {
+            name
+            requests {
+              type
+              evidence(orderBy:creationTime orderDirection: asc) {
+                URI
+              }
+              challenges {
+                reason
+                challengeID
+                disputeID
+              }
+            }
+        }
+    }
+`
+
 export const getChallengeInfo = async (
   submissionId: string,
   requestId: number,
@@ -27,33 +46,17 @@ export const getChallengeInfo = async (
     url: pohApi_URL,
     method: "post",
     data: {
-      query: `
-        query {
-            submission(id: "${submissionId}") {
-                name
-                requests {
-                  type
-                  evidence(orderBy:creationTime orderDirection: asc) {
-                    URI
-                  }
-                  challenges {
-                    reason
-                    challengeID
-                    disputeID
-                  }
-                }
-              }
-        }`,
+      query: infoQuery(submissionId),
     },
   })
 
   const submission = res.data.data.submission
 
   const evidenceURI = submission.requests[requestId].evidence[1].URI
+
   const fullReason: Evidence = (
     await axios.get(`${ipfs_BASEURL}${evidenceURI}`)
   ).data
-  console.log("jason", fullReason.description)
 
   const challengeInfo: ChallengeInfo = {
     name: submission.name,
