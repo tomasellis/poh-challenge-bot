@@ -6,7 +6,7 @@ import {
   ipfs_BASEURL
 } from "./config"
 
-type ChallengeInfo = {
+export type ChallengeInfo = {
   name: string
   challengeReason: string
   klerosCaseLink: string
@@ -35,7 +35,7 @@ export const getChallengeInfo = async (
   const submission = res.data.data.submission
   const evidenceURI = submission.requests[requestId].evidence[1].URI
   const evidenceRes = await axios.get(`${ipfs_BASEURL}${evidenceURI}`)
-  const fullReason = evidenceRes.data
+  const fullReason : Evidence = evidenceRes.data
 
   const challengeInfo: ChallengeInfo = {
     name: submission.name,
