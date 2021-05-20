@@ -3,7 +3,7 @@ import {
   pohApi_URL,
   pohProfile_BASEURL,
   klerosCase_BASEURL,
-  ipfs_BASEURL
+  ipfs_BASEURL,
 } from "./config"
 
 export type ChallengeInfo = {
@@ -18,38 +18,37 @@ type Evidence = {
   description: string
 }
 
-
 export const getChallengeInfo = async (
   submissionId: string,
   requestId: number,
   challengeId: number
 ) => {
+  await new Promise(r => setTimeout(r, 1000 * 50))
+
   const res = await axios({
     url: pohApi_URL,
     method: "post",
     data: {
-      query: infoQuery(submissionId)
-    }
+      query: infoQuery(submissionId),
+    },
   })
 
   const submission = res.data.data.submission
   const evidenceURI = submission.requests[requestId].evidence[1].URI
   const evidenceRes = await axios.get(`${ipfs_BASEURL}${evidenceURI}`)
-  const fullReason : Evidence = evidenceRes.data
+  const fullReason: Evidence = evidenceRes.data
 
   const challengeInfo: ChallengeInfo = {
     name: submission.name,
     challengeReason: fullReason.description,
     pohProfileLink: `${pohProfile_BASEURL}${submissionId.toLowerCase()}`,
-    klerosCaseLink: `${klerosCase_BASEURL}${submission.requests[requestId].challenges[challengeId].disputeID}`
+    klerosCaseLink: `${klerosCase_BASEURL}${submission.requests[requestId].challenges[challengeId].disputeID}`,
   }
 
   return challengeInfo
 }
 
-
 // -- HELPERS
-
 
 const infoQuery = (submissionId: string) => `
     query {
