@@ -1,6 +1,11 @@
 export type AppConfig = {
+  serverConfig: ServerConfig
   infuraConfig: InfuraConfig,
   twitterConfig: TwitterConfig
+}
+
+export type ServerConfig = {
+  port: number
 }
 
 export type InfuraConfig = {
@@ -17,6 +22,9 @@ export type TwitterConfig = {
 export const appConfigFromEnvironment = (): Promise<AppConfig> =>
   Promise.resolve(
     {
+      serverConfig: {
+        port: parseInt(process.env.PORT ?? "5000")
+      },
       infuraConfig: {
         url: process.env.INFURA_URL as string
       },
