@@ -12,7 +12,8 @@ export type NewChallengeTweetData = {
 
 export const postTweet = (twitterConfig: TwitterConfig) => async (data: NewChallengeTweetData): Promise<StatusesUpdate> => {
   const input: StatusesUpdateParams = {
-    status: makeStatus(data)
+    status: makeStatus(data),
+    card_uri: "tombstone://card"
   }
 
   const twitterClient = new TwitterClient(twitterConfig)
