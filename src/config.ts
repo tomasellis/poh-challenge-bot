@@ -32,7 +32,7 @@ export const appConfigFromEnvironment = (): Promise<AppConfig> =>
         apiKey: process.env.TWITTER_API_KEY as string,
         apiSecret: process.env.TWITTER_API_SECRET as string,
         accessToken: process.env.TWITTER_ACCESS_TOKEN as string,
-        accessTokenSecret: process.env.TWITTER_ACESS_TOKEN_SECRET as string
+        accessTokenSecret: process.env.TWITTER_ACCESS_TOKEN_SECRET as string
       }
     }
   )
