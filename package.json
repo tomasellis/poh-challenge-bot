@@ -1,8 +1,11 @@
 {
   "name": "pohbot",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "description": "A bot that displays PoH registry info.",
   "main": "index.ts",
+  "engines": {
+    "node": "15.5.0"
+  },
   "scripts": {
     "start": "node dist/src/start.js",
     "build": "npm run generate && tsc -p . --outdir dist",
