@@ -4,6 +4,8 @@
   "description": "A bot that displays PoH registry info.",
   "main": "index.ts",
   "scripts": {
+    "start": "node dist/src/sandbox.js",
+    "build": "npm run generate && tsc -p . --outdir dist",
     "sandbox": "dotenv ts-node src/sandbox.ts",
     "generate": "typechain --target ethers-v5 --out-dir generated/poh-ethers-contracts assets/poh-contracts/*.json"
   },

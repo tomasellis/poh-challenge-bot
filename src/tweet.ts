@@ -36,7 +36,7 @@ export const makeStatus = (data: NewChallengeTweetData): string =>
 📣「${truncateText(100)(data.reasonGiven)}」
 
 👤 View the profile: ${data.pohProfileUrl}
-👀 Follow the case: ${data.klerosCaseUrl}`
+🔎 Follow the case: ${data.klerosCaseUrl}`
 
 
 
