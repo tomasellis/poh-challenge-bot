@@ -5,6 +5,7 @@ import {
   klerosCase_BASEURL,
   ipfs_BASEURL,
 } from "./config"
+import * as util from "util"
 
 export type ChallengeInfo = {
   name: string
@@ -33,6 +34,7 @@ export const getChallengeInfo = async (
     },
   })
 
+  console.info("Response from PoH API: ", util.inspect(res.data, {showHidden: false, depth: null}))
   const submission = res.data.data.submission
   const evidenceURI = submission.requests[requestId].evidence[1].URI
   const evidenceRes = await axios.get(`${ipfs_BASEURL}${evidenceURI}`)
