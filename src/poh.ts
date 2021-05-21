@@ -52,7 +52,7 @@ export const getChallengeInfo = async (
 
 const infoQuery = (submissionId: string) => `
     query {
-        submission(id: "${submissionId}") {
+        submission(id: "${submissionId.toLowerCase()}") {
             name
             requests(orderBy: creationTime, orderDirection: asc) {
               type
