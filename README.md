@@ -1,6 +1,6 @@
 # POH Challenge Bot
 
-A [Twitter Bot](https://twitter.com/daily_ubi_bot) that tweets each time a profile is challenged by the members of [Proof of Humanity](https://www.proofofhumanity.id/)(POH). It displays the name of the profile being challengeg, a link to the profile in POH and a link to the case in the [Kleros](https://kleros.io/) court.
+A [Twitter Bot](https://twitter.com/daily_ubi_bot) that tweets each time a profile is challenged by the members of [Proof of Humanity](https://www.proofofhumanity.id/)(POH). It displays the name of the profile being challenged, a link to the profile in POH and a link to the case in the [Kleros](https://kleros.io/) court.
 
 Feel free to open an issue with any suggestions.
 
