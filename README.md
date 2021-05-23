@@ -4,6 +4,10 @@ A [Twitter Bot](https://twitter.com/daily_ubi_bot) that tweets each time a profi
 
 Feel free to open an issue with any suggestions.
 
+## Check how it works
+
+[To be added 😶]()
+
 ## Acknowledgements
 
 Thank to [gtcr-twitter-bot](https://github.com/kleros/gtcr-twitter-bot/) for examples on how to connect to the Etereum blockchain.
@@ -26,6 +30,12 @@ Install dependencies
 
 ```bash
   npm install
+```
+
+Compile contracts
+
+```bash
+  npm run generate
 ```
 
 Run the sandbox
