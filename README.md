@@ -6,7 +6,7 @@ Feel free to open an issue with any suggestions.
 
 ## Check how it works
 
-[To be added 😶]()
+[How it works](https://github.com/tomasellis/poh-challenge-bot/blob/main/HOW_IT_WORKS.md)
 
 ## Acknowledgements
 
