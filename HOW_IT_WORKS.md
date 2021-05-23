@@ -1,6 +1,6 @@
-#How it works
+# How it works
 
-##Listening to the event
+## Listening to the event
 The [PoH contract](https://github.com/Proof-Of-Humanity/Proof-Of-Humanity/blob/master/contracts/ProofOfHumanity.sol#L199)
 has an event specifically for our use case.  
 
@@ -40,7 +40,7 @@ type SubmissionChallengedArgs = {
 - `_submissionID` will be the address of the wallet used to register the profile in [PoH](https://www.proofofhumanity.id "Proof of Humanity website")
 - `_requestID` and `_challengeID` will help us find the reason for the challenge. It is worth noting that they are actually indexes and not IDs.
 
-##Gathering the data for the tweet
+## Gathering the data for the tweet
 The data included in the event payload is nowhere near what we need to make the tweets with the information we want,
 but it does include de IDs to query the [PoH API](https://thegraph.com/explorer/subgraph/kleros/proof-of-humanity-mainnet "Proof of Humanity GraphQL playground").
 
