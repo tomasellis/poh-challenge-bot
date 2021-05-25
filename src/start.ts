@@ -19,7 +19,7 @@ const main = (configuration: AppConfig) => {
   provider.on("poll", (pollNumber, blockNumber) => console.info(`Poll ${pollNumber}: block ${blockNumber}`))
 
   poh.on(poh.filters.SubmissionChallenged(), async (_, __, ___, event) => {
-    console.info("Got submission challenge event:", event)
+    console.info("Got submission challenge event:", event.args)
     const challengeInfo = await getChallengeInfo(
       event.args._submissionID,
       event.args._requestID.toNumber(),
@@ -30,7 +30,7 @@ const main = (configuration: AppConfig) => {
     console.info("Challenge info: ", challengeInfo)
 
     const tweetResult = await tweet.postTweet(configuration.twitterConfig)(tweetData)
-    console.info("Tweet result: ", tweetResult)
+    console.info("Tweet id: ", tweetResult.id)
   })
 
   const app =
