@@ -1,26 +1,29 @@
-import { StatusesUpdate, StatusesUpdateParams, TwitterClient } from "twitter-api-client"
+import {
+  StatusesUpdate,
+  StatusesUpdateParams,
+  TwitterClient,
+} from "twitter-api-client"
 import { TwitterConfig } from "./config"
 
-
 export type NewChallengeTweetData = {
-  name: string,
-  reasonGiven: string,
-  pohProfileUrl: string,
+  name: string
+  reasonGiven: string
+  pohProfileUrl: string
   klerosCaseUrl: string
 }
 
+export const postTweet =
+  (twitterConfig: TwitterConfig) =>
+  async (data: NewChallengeTweetData): Promise<StatusesUpdate> => {
+    const input: StatusesUpdateParams = {
+      status: makeStatus(data),
+      card_uri: "tombstone://card",
+    }
 
-export const postTweet = (twitterConfig: TwitterConfig) => async (data: NewChallengeTweetData): Promise<StatusesUpdate> => {
-  const input: StatusesUpdateParams = {
-    status: makeStatus(data),
-    card_uri: "tombstone://card"
+    const twitterClient = new TwitterClient(twitterConfig)
+    const res = await twitterClient.tweets.statusesUpdate(input)
+    return res
   }
-
-  const twitterClient = new TwitterClient(twitterConfig)
-  const res = await twitterClient.tweets.statusesUpdate(input)
-  return res
-}
-
 
 /**
  * Makes the string for the tweet status.
@@ -37,18 +40,18 @@ export const makeStatus = (data: NewChallengeTweetData): string =>
 📣「${truncateText(100)(data.reasonGiven)}」
 
 👤 View the profile: ${data.pohProfileUrl}
-🔎 Follow the case: ${data.klerosCaseUrl}`
-
-
+🔎 Follow the case: ${data.klerosCaseUrl}
+#proofofhumanity`
 
 // -- HELPERS
 
-
-const truncateText = (maxLength: number) => (text: string): string => {
-  const ellipsis = "..."
-  const truncated =
-    text.length <= maxLength
-      ? text
-      : text.substr(0, maxLength - ellipsis.length).concat(ellipsis)
-  return truncated
-}
+const truncateText =
+  (maxLength: number) =>
+  (text: string): string => {
+    const ellipsis = "..."
+    const truncated =
+      text.length <= maxLength
+        ? text
+        : text.substr(0, maxLength - ellipsis.length).concat(ellipsis)
+    return truncated
+  }
