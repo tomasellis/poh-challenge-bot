@@ -35,7 +35,7 @@ export const postTweet =
  * and will show them shortened if necessary.
  */
 export const makeStatus = (data: NewChallengeTweetData): string =>
-  `⚖️ ${data.name} has been challenged.
+  `⚖️ ${truncateText(40)(data.name)} has been challenged.
 
 📣「${truncateText(100)(data.reasonGiven)}」
 
