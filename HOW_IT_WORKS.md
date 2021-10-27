@@ -78,5 +78,5 @@ So we fetch the JSON from https://ipfs.io/ipfs/QmcsrFzVzSQyTbyKX59bPTun9VH4o41rA
 }
 ```
 
-Now we have all the pieces to make the tweet with [this](`https://github.com/FeedHive/twitter-api-client`)
+Now we have all the pieces to make the tweet, and for that we're using [this](https://github.com/FeedHive/twitter-api-client)
 library.
